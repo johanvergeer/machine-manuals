@@ -20,7 +20,9 @@
 \graphicspath{{./}{./images/}}
 
 % Redefine page numbering format
-\renewcommand{\thepage}{\thechapter.\thesection-\arabic{page}}
+\makeatletter
+\renewcommand{\thepage}{\thechapter.\@arabic\c@section-\arabic{page}}
+\makeatother
 
 % Reset page numbers at the start of each section
 \usepackage{etoolbox}
@@ -133,6 +135,10 @@
 \subsection{Subsection}
 
 THis is some subsection text
+
+\newpage
+
+This is some more text
 
 \section{Details}
 This is an example of another section content.
