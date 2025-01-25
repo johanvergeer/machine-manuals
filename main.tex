@@ -21,7 +21,12 @@
 
 % Redefine page numbering format
 \makeatletter
-\renewcommand{\thepage}{\thechapter.\@arabic\c@section-\arabic{page}}
+\renewcommand{\thepage}{%
+  \thechapter.%
+  \ifnum\c@section<10 0\fi% Add leading zero if section number < 10
+  \@arabic\c@section-%
+  \arabic{page}%
+}
 \makeatother
 
 % Reset page numbers at the start of each section
