@@ -1,5 +1,6 @@
 \documentclass[openany, 11pt]{book}
 
+% Packages
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
@@ -9,17 +10,15 @@
 \usepackage{courier}
 \usepackage[margin=2.5cm, top=2cm]{geometry} % Set general page margins
 \usepackage{background} % For drawing the box on every page
+\usepackage{etoolbox}   % For resetting counters
 
-% Adjust header layout
-\setlength{\topmargin}{-2cm}      % Moves the entire content block closer to the top
-\setlength{\headheight}{33pt}     % Adjust height of the header to fit the logo
-\setlength{\headsep}{10pt}        % Space between header and main content
-
+% General Font
 \renewcommand{\rmdefault}{pcr} % Set courier as the default font family
 
+% Paths
 \graphicspath{{./}{./images/}}
 
-% Redefine page numbering format
+% Page Numbering
 \makeatletter
 \renewcommand{\thepage}{%
   \thechapter.%
@@ -29,13 +28,12 @@
 }
 \makeatother
 
-% Reset page numbers at the start of each section
-\usepackage{etoolbox}
+% Reset section page numbering per chapter
 \newcounter{sectioninchapter} % Counter to track sections in a chapter
-\pretocmd{\chapter}{
+\pretocmd{\chapter}{%
   \setcounter{sectioninchapter}{0} % Reset section counter for each chapter
 }{}{}
-\pretocmd{\section}{
+\pretocmd{\section}{%
   \ifnum\value{sectioninchapter}=0
     \setcounter{page}{1} % First section stays on the same page
   \else
@@ -44,26 +42,38 @@
   \stepcounter{sectioninchapter} % Increment section counter
 }{}{}
 
-% Ensure headers on chapter title pages
-\fancypagestyle{plain}{
-  \fancyhf{} % Clear all headers and footers
-  \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Adjust the height to fit your logo
-  \fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Vertically align text with the logo
-  \fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Page number on the right
+% Header Layout
+\setlength{\topmargin}{-2cm}      % Moves the content block closer to the top
+\setlength{\headheight}{33pt}     % Adjust height of the header to fit the logo
+\setlength{\headsep}{10pt}        % Space between header and main content
+
+% Custom Header
+\pagestyle{fancy}
+\fancyhf{} % Clear all headers and footers
+\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Logo on the left
+\fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Center text
+\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Page number on the right
+\renewcommand{\headrulewidth}{0pt} % Remove line under the header
+
+% Custom Header on Chapter Title Pages
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}}
+  \fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}
+  \fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}
 }
 
-% Define a background box on each page
-\backgroundsetup{
+% Background Box
+\backgroundsetup{%
   scale=1,
   color=black,
   opacity=1,
   angle=0,
   position=current page.south west,
-  vshift=1cm, % Keep the top edge 2 cm from the top of the page
+  vshift=1cm,
   hshift=2cm,
   nodeanchor=south west,
-  contents={
-    % Define the tcolorbox as a TikZ node
+  contents={%
     \begin{tikzpicture}[remember picture, overlay]
       \node[anchor=south west, inner sep=0] (box) at (0, 0) {
         \begin{tcolorbox}[
@@ -76,9 +86,7 @@
         ]
         \end{tcolorbox}
       };
-      % Draw the line 1 cm above the bottom of the tcolorbox
-      \draw[black, thick] ([yshift=1cm]box.south west) -- ([yshift=1cm]box.south east);
-      % Add the footer text at the center between the bottom of the box and the line
+      \draw[black, thick] ([yshift=1cm]box.south west) -- ([yshift=1cm]box.south east); % Footer line
       \node[anchor=south, yshift=-.6cm] at ([yshift=1cm]box.south) {
         \footnotesize \textit{MAHO WERKZEUGMACHINENBAU BABEL \& CO. D-8962 FRONTEN}
       };
@@ -86,64 +94,37 @@
   }
 }
 
-% Set up the header
-\pagestyle{fancy}
-\fancyhf{} % Clear all headers and footers
-\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Adjust the height to fit your logo
-\fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Vertically align text with the logo
-\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Page number on the right
-\renewcommand{\headrulewidth}{0pt} % Remove the line under the header
-
-% Redefine chapter formatting
-\titleformat{\chapter}[block]
-  {\normalfont\Large\bfseries} % Bold and large font
-  {} % Remove "Chapter X"
-  {0pt} % No extra space for chapter number
-  {\chapterTitleStyle} % Call custom command for formatting
-
-% Custom command for chapter title style
+% Chapter Formatting
+\titleformat{\chapter}[block]{\normalfont\Large\bfseries}{}{0pt}{\chapterTitleStyle}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt} % Adjust spacing before/after chapter title
 \newcommand{\chapterTitleStyle}[1]{%
   \vspace{-1em}% Adjust vertical space
   \underline{\MakeUppercase{#1}}% Uppercase and underline the title
   \vspace{1em}% Adjust vertical space after the title
 }
 
-\titlespacing*{\chapter}{0pt}{0pt}{20pt} % Adjust spacing before and after the chapter title
-
-% Redefine section formatting
-\titleformat{\section}[block]
-  {\normalfont\large\bfseries} % Bold and large font for sections
-  {} % Remove section number
-  {0pt} % No extra space for section number
-  {\sectionTitleStyle} % Call custom command for formatting
-
-% Custom command for section title style
+% Section Formatting
+\titleformat{\section}[block]{\normalfont\large\bfseries}{}{0pt}{\sectionTitleStyle}
+\titlespacing*{\section}{0pt}{10pt}{10pt} % Adjust spacing before/after section title
 \newcommand{\sectionTitleStyle}[1]{%
   \underline{\MakeUppercase{#1}}% Uppercase and underline the section title
 }
 
-\titlespacing*{\section}{0pt}{10pt}{10pt} % Adjust spacing before and after the section title
+% Subsection Formatting
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{}{0pt}{} % No uppercase/underline
+\titlespacing*{\subsection}{0pt}{10pt}{10pt}
 
-% Redefine subsection formatting (No uppercase or underline)
-\titleformat{\subsection}[block]
-  {\normalfont\normalsize\bfseries} % Bold and normal-sized font
-  {} % Remove subsection number
-  {0pt} % No extra space for subsection number
-  {\underline{}} % Keep the original title format
-
-\titlespacing*{\subsection}{0pt}{10pt}{10pt} % Adjust spacing before and after the subsection title
-
+% Document Content
 \begin{document}
 
 \chapter{Introduction}
 \section{Overview}
 \subsection{Subsection}
-
-THis is some subsection text
+This is some subsection text.
 
 \newpage
 
-This is some more text
+This is some more text.
 
 \section{Details}
 This is an example of another section content.
