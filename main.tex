@@ -103,11 +103,36 @@
 
 \titlespacing*{\chapter}{0pt}{0pt}{20pt} % Adjust spacing before and after the chapter title
 
+% Redefine section formatting
+\titleformat{\section}[block]
+  {\normalfont\large\bfseries} % Bold and large font for sections
+  {} % Remove section number
+  {0pt} % No extra space for section number
+  {\sectionTitleStyle} % Call custom command for formatting
+
+% Custom command for section title style
+\newcommand{\sectionTitleStyle}[1]{%
+  \underline{\MakeUppercase{#1}}% Uppercase and underline the section title
+}
+
+\titlespacing*{\section}{0pt}{10pt}{10pt} % Adjust spacing before and after the section title
+
+% Redefine subsection formatting (No uppercase or underline)
+\titleformat{\subsection}[block]
+  {\normalfont\normalsize\bfseries} % Bold and normal-sized font
+  {} % Remove subsection number
+  {0pt} % No extra space for subsection number
+  {\underline{}} % Keep the original title format
+
+\titlespacing*{\subsection}{0pt}{10pt}{10pt} % Adjust spacing before and after the subsection title
+
 \begin{document}
 
 \chapter{Introduction}
 \section{Overview}
-This is an example of the first section content.
+\subsection{Subsection}
+
+THis is some subsection text
 
 \section{Details}
 This is an example of another section content.
