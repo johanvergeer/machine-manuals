@@ -1,0 +1,68 @@
+\documentclass[openany, 11pt]{book}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{courier}
+\usepackage[margin=2.5cm, top=3cm]{geometry} % Adjust the margins
+
+% Adjust header layout
+\setlength{\topmargin}{-2cm}      % Moves the entire content block closer to the top
+\setlength{\headheight}{15pt}     % Adjust height of the header to fit the logo
+\setlength{\headsep}{10pt}        % Space between header and main content
+
+\renewcommand{\rmdefault}{pcr} % Set courier as the default font family
+
+\graphicspath{{./}{./images/}}
+
+% Redefine page numbering format
+\renewcommand{\thepage}{\thechapter.\thesection-\arabic{page}}
+
+% Reset page numbers at the start of each section
+\usepackage{etoolbox}
+\newcounter{sectioninchapter} % Counter to track sections in a chapter
+\pretocmd{\chapter}{
+  \setcounter{sectioninchapter}{0} % Reset section counter for each chapter
+}{}{}
+\pretocmd{\section}{
+  \ifnum\value{sectioninchapter}=0
+    \setcounter{page}{1} % First section stays on the same page
+  \else
+    \clearpage\setcounter{page}{1} % Start new page for subsequent sections
+  \fi
+  \stepcounter{sectioninchapter} % Increment section counter
+}{}{}
+
+% Ensure headers on chapter title pages
+\fancypagestyle{plain}{
+  \fancyhf{} % Clear all headers and footers
+  \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Adjust the height to fit your logo
+  \fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Vertically align text with the logo
+  \fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Page number on the right
+}
+
+% Set up the header with the logo
+\pagestyle{fancy}
+\fancyhf{} % Clear all headers and footers
+\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Adjust the height to fit your logo
+\fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Vertically align text with the logo
+\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Page number on the right
+
+\begin{document}
+
+\chapter{Introduction}
+\section{Overview}
+This is an example of the first section content.
+
+\section{Details}
+This is an example of another section content.
+
+\chapter{Another Chapter}
+\section{Overview}
+This is an example of the second chapter content.
+
+\section{Details}
+This is an example of another section in the second chapter.
+
+\end{document}
