@@ -11,6 +11,8 @@
 \usepackage[margin=2.5cm, top=2cm]{geometry} % Set general page margins
 \usepackage{background}     % For adding a background box on each page
 \usepackage{etoolbox}       % For resetting counters
+\usepackage[ngerman, english, dutch]{babel}
+\usepackage{iflang}
 
 % ============ GENERAL SETTINGS ============
 \renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
@@ -109,26 +111,39 @@
 \titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{10pt}{10pt}
 
+% Define commands for easier switching
+\newcommand{\DE}[1]{\foreignlanguage{ngerman}{#1}} % Short for German
+\newcommand{\EN}[1]{\foreignlanguage{english}{#1}} % Short for English
+\newcommand{\NL}[1]{\foreignlanguage{dutch}{#1}}   % Short for Dutch
+
 % =========== DOCUMENT CONTENT ===========
 \begin{document}
 
-\chapter{Introduction}
-\section{Overview}
-\subsection{Subsection}
-This is some subsection text.
+% Example content
+\IfLanguageName{ngerman}{
+  \chapter{Einleitung}
+  Dies ist das deutsche Handbuch.
 
-\newpage
+  \chapter{Kapitel 1}
+  Maschineninformationen auf Deutsch.
+}
 
-This is some more text.
+% English Section
+\IfLanguageName{english}{
+  \chapter{Introduction}
+  This is the English manual.
 
-\section{Details}
-This is an example of another section content.
+  \chapter{Chapter 1}
+  Machine information in English.
+}
 
-\chapter{Another Chapter}
-\section{Overview}
-This is an example of the second chapter content.
+% Dutch Section
+\IfLanguageName{dutch}{
+  \chapter{Inleiding}
+  Dit is de Nederlandse handleiding.
 
-\section{Details}
-This is an example of another section in the second chapter.
+  \chapter{Hoofdstuk 1}
+  Machine-informatie in het Nederlands.
+}
 
 \end{document}
