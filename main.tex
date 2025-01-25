@@ -54,15 +54,22 @@
   hshift=2cm,
   nodeanchor=south west,
   contents={
-    \begin{tcolorbox}[
-      colframe=black,
-      colback=white,
-      boxrule=0.5mm,
-      sharp corners,
-      width=\dimexpr\paperwidth-3cm\relax,
-      height=\dimexpr\paperheight-3cm\relax % Increase height by 3 cm to extend the bottom edge
-    ]
-    \end{tcolorbox}
+    % Define the tcolorbox as a TikZ node
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[anchor=south west, inner sep=0] (box) at (0, 0) {
+        \begin{tcolorbox}[
+          colframe=black,
+          colback=white,
+          boxrule=0.5mm,
+          sharp corners,
+          width=\dimexpr\paperwidth-3cm\relax,
+          height=\dimexpr\paperheight-3cm\relax
+        ]
+        \end{tcolorbox}
+      };
+      % Draw the line 1 cm above the bottom of the tcolorbox
+      \draw[black, thick] ([yshift=1cm]box.south west) -- ([yshift=1cm]box.south east);
+    \end{tikzpicture}
   }
 }
 
