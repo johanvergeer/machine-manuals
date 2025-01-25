@@ -50,7 +50,7 @@
   opacity=1,
   angle=0,
   position=current page.south west,
-  vshift=3.3cm, % Move the box down to avoid overlapping the header
+  vshift=1cm, % Keep the top edge 2 cm from the top of the page
   hshift=2cm,
   nodeanchor=south west,
   contents={
@@ -60,7 +60,7 @@
       boxrule=0.5mm,
       sharp corners,
       width=\dimexpr\paperwidth-3cm\relax,
-      height=\dimexpr\paperheight-5cm\relax % Adjust to avoid footer overlap
+      height=\dimexpr\paperheight-3cm\relax % Increase height by 3 cm to extend the bottom edge
     ]
     \end{tcolorbox}
   }
