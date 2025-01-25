@@ -1,61 +1,56 @@
 \documentclass[openany, 11pt]{book}
 
-% Packages
-\usepackage{graphicx}
-\usepackage{fancyhdr}
-\usepackage{titlesec}
-\usepackage{textcase}
-\usepackage{ulem}
-\usepackage{tcolorbox}
-\usepackage{courier}
+% ============== PACKAGES ==============
+\usepackage{graphicx}       % For including images
+\usepackage{fancyhdr}       % For customizing headers and footers
+\usepackage{titlesec}       % For formatting section and chapter titles
+\usepackage{textcase}       % For text case transformations
+\usepackage{ulem}           % For underlining and strikeout text
+\usepackage{tcolorbox}      % For creating colored/text-boxes
+\usepackage{courier}        % For using Courier as a font
 \usepackage[margin=2.5cm, top=2cm]{geometry} % Set general page margins
-\usepackage{background} % For drawing the box on every page
-\usepackage{etoolbox}   % For resetting counters
+\usepackage{background}     % For adding a background box on each page
+\usepackage{etoolbox}       % For resetting counters
 
-% General Font
-\renewcommand{\rmdefault}{pcr} % Set courier as the default font family
+% ============ GENERAL SETTINGS ============
+\renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
+\graphicspath{{./}{./images/}} % Define paths for images
 
-% Paths
-\graphicspath{{./}{./images/}}
-
-% Page Numbering
+% ============ PAGE NUMBERING ============
 \makeatletter
 \renewcommand{\thepage}{%
-  \thechapter.%
-  \ifnum\c@section<10 0\fi% Add leading zero if section number < 10
-  \@arabic\c@section-%
-  \arabic{page}%
+  \thechapter.%                % Include the chapter number
+  \ifnum\c@section<10 0\fi%    % Add leading zero to single-digit section numbers
+  \@arabic\c@section-%         % Render section number
+  \arabic{page}%               % Render the page number
 }
 \makeatother
 
-% Reset section page numbering per chapter
-\newcounter{sectioninchapter} % Counter to track sections in a chapter
-\pretocmd{\chapter}{%
-  \setcounter{sectioninchapter}{0} % Reset section counter for each chapter
-}{}{}
+% Reset section page numbers per chapter
+\newcounter{sectioninchapter}
+\pretocmd{\chapter}{\setcounter{sectioninchapter}{0}}{}{}
 \pretocmd{\section}{%
   \ifnum\value{sectioninchapter}=0
-    \setcounter{page}{1} % First section stays on the same page
+    \setcounter{page}{1}
   \else
-    \clearpage\setcounter{page}{1} % Start new page for subsequent sections
+    \clearpage\setcounter{page}{1}
   \fi
-  \stepcounter{sectioninchapter} % Increment section counter
+  \stepcounter{sectioninchapter}
 }{}{}
 
-% Header Layout
-\setlength{\topmargin}{-2cm}      % Moves the content block closer to the top
-\setlength{\headheight}{33pt}     % Adjust height of the header to fit the logo
-\setlength{\headsep}{10pt}        % Space between header and main content
+% ============= HEADER CONFIG =============
+\setlength{\topmargin}{-2cm}      % Move content block closer to the top
+\setlength{\headheight}{33pt}     % Increase header height to fit the logo
+\setlength{\headsep}{10pt}        % Space between the header and content
 
-% Custom Header
 \pagestyle{fancy}
-\fancyhf{} % Clear all headers and footers
-\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Logo on the left
-\fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Center text
-\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Page number on the right
-\renewcommand{\headrulewidth}{0pt} % Remove line under the header
+\fancyhf{} % Clear default header/footer content
+\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Add logo on the left
+\fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Add centered header text
+\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Add page number on the right
+\renewcommand{\headrulewidth}{0pt} % Remove header rule line
 
-% Custom Header on Chapter Title Pages
+% Header for chapter title pages
 \fancypagestyle{plain}{%
   \fancyhf{}
   \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}}
@@ -63,7 +58,7 @@
   \fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}
 }
 
-% Background Box
+% ========== BACKGROUND CONFIG ==========
 \backgroundsetup{%
   scale=1,
   color=black,
@@ -77,16 +72,16 @@
     \begin{tikzpicture}[remember picture, overlay]
       \node[anchor=south west, inner sep=0] (box) at (0, 0) {
         \begin{tcolorbox}[
-          colframe=black,
-          colback=white,
+          colframe=black, 
+          colback=white, 
           boxrule=0.5mm,
-          sharp corners,
+          sharp corners, 
           width=\dimexpr\paperwidth-3cm\relax,
           height=\dimexpr\paperheight-3cm\relax
         ]
         \end{tcolorbox}
       };
-      \draw[black, thick] ([yshift=1cm]box.south west) -- ([yshift=1cm]box.south east); % Footer line
+      \draw[black, thick] ([yshift=1cm]box.south west) -- ([yshift=1cm]box.south east);
       \node[anchor=south, yshift=-.6cm] at ([yshift=1cm]box.south) {
         \footnotesize \textit{MAHO WERKZEUGMACHINENBAU BABEL \& CO. D-8962 FRONTEN}
       };
@@ -94,27 +89,27 @@
   }
 }
 
-% Chapter Formatting
+% ========== CHAPTER FORMATTING ==========
 \titleformat{\chapter}[block]{\normalfont\Large\bfseries}{}{0pt}{\chapterTitleStyle}
-\titlespacing*{\chapter}{0pt}{0pt}{20pt} % Adjust spacing before/after chapter title
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
 \newcommand{\chapterTitleStyle}[1]{%
-  \vspace{-1em}% Adjust vertical space
-  \underline{\MakeUppercase{#1}}% Uppercase and underline the title
-  \vspace{1em}% Adjust vertical space after the title
+  \vspace{-1em}
+  \underline{\MakeUppercase{#1}}
+  \vspace{1em}
 }
 
-% Section Formatting
+% ========== SECTION FORMATTING ==========
 \titleformat{\section}[block]{\normalfont\large\bfseries}{}{0pt}{\sectionTitleStyle}
-\titlespacing*{\section}{0pt}{10pt}{10pt} % Adjust spacing before/after section title
+\titlespacing*{\section}{0pt}{10pt}{10pt}
 \newcommand{\sectionTitleStyle}[1]{%
-  \underline{\MakeUppercase{#1}}% Uppercase and underline the section title
+  \underline{\MakeUppercase{#1}}
 }
 
-% Subsection Formatting
-\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{}{0pt}{} % No uppercase/underline
+% ======== SUBSECTION FORMATTING =========
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{}{0pt}{}
 \titlespacing*{\subsection}{0pt}{10pt}{10pt}
 
-% Document Content
+% =========== DOCUMENT CONTENT ===========
 \begin{document}
 
 \chapter{Introduction}
