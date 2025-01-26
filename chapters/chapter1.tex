@@ -284,3 +284,61 @@ To prepare the machine for operation, the oil in the work spindle drive must be 
     \includegraphics[width=0.8\textwidth]{spindle_oil_fill_diagram.jpg} % Replace with your image filename
     \caption{}
 \end{figure}
+
+
+\section{Connecting to the Electrical Network}
+
+\noindent
+Connection regulations from the responsible power supply company must be observed.
+
+\noindent
+\begin{figure}[htp] % Top alignment for the figure
+    \centering
+    \begin{minipage}[t]{.4\linewidth} % Adjust the width for the image
+        \centering
+        \raisebox{-\height}{% Top-align the image
+            \includegraphics[width=\linewidth]{electrical_connection_diagram.jpg}
+        }
+        \caption{Electrical connection diagram.} % Caption below the image
+        \label{fig:electrical_connection} % Optional: add label for referencing
+    \end{minipage}%
+    \hfill % Add space between image and text
+    \begin{minipage}[t]{\dimexpr\textwidth-8cm\relax} % Remaining width for the text
+        \vspace{0pt} % Ensures top alignment of this minipage
+        Total connection power: \dotfill 11 kVA \\\\
+        Fuse, max.: \\
+        200-220 V \dotfill 35 A \\
+        380-500 V \dotfill 25 A
+    \end{minipage}
+\end{figure}
+
+\begin{itemize}
+    \item Switch off the main switch \textbf{-Q1-} on the control cabinet.
+    \item Open the control cabinet door. Feed the connection cable through the \\provided opening and connect it to the input terminals L1, L2, L3, N, PE.
+    \item For 4-pole connections, terminals N and PE must be bridged.
+    \item Check the phase sequence using a phase sequence indicator on terminals L1, L2, L3. If necessary, swap two phases at the input terminals.
+    \item Check all terminal screws on the terminal strips, contactors, relays, and fuses in the control cabinet for tightness.
+    \item Only after establishing the correct phase sequence, switch on the main \\switch \textbf{-Q1-} on the control cabinet and perform a function test following the instructions on Page 3.01-1.
+\end{itemize}
+
+\notebox{NOTE}{The electrical documentation is located in a pocket on the inside of the control cabinet door and must remain in the machine!}
+
+\notebox{CAUTION}{When connecting peripheral devices (reader-puncher, corner milling head, grinding head), check the voltage of the socket.}
+
+
+\noindent Fuses must only be replaced with equivalent types.
+
+\vspace{.5cm}
+
+\noindent Adjustment values on potentiometers, adjustment switches, machine parameters, etc., must only be changed by service personnel.
+
+\section*{Commissioning Checklist}
+
+Before starting the working spindles and axis movements, the following points must be completed:
+
+\begin{enumerate}
+    \item Proper setup, see page 1.03-1.
+    \item Rust protection removed, see page 1.08-1.
+    \item Oil bath filled, see page 1.09-1.
+    \item Electrical connection, see page 1.10-1.
+\end{enumerate}
