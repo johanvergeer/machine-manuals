@@ -8,8 +8,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// configureCmd represents the configure command
-var configureCmd = &cobra.Command{
+// configureInitManualCmd represents the configure command
+var configureInitManualCmd = &cobra.Command{
 	Use:   "init_manual",
 	Short: "Set up a folder and file structure",
 	Long: `This command sets up a predefined folder and file structure. 
@@ -33,24 +33,22 @@ You can specify the root directory where the structure should be created.`,
 
 func init() {
 	// Add the command to the root command
-	rootCmd.AddCommand(configureCmd)
+	rootCmd.AddCommand(configureInitManualCmd)
 
 	// Define flags
-	configureCmd.Flags().StringP("manufacturer", "m", "", "The machine manufacturer")
-	configureCmd.MarkFlagRequired("manufacturer") // Mark as required
+	configureInitManualCmd.Flags().StringP("manufacturer", "m", "", "The machine manufacturer")
+	configureInitManualCmd.MarkFlagRequired("manufacturer") // Mark as required
 
-	configureCmd.Flags().StringP("machine_name", "n", "", "The machine name")
-	configureCmd.MarkFlagRequired("machine_name") // Mark as required
+	configureInitManualCmd.Flags().StringP("machine_name", "n", "", "The machine name")
+	configureInitManualCmd.MarkFlagRequired("machine_name") // Mark as required
 
-	configureCmd.Flags().String("manual_name", "operator_manual", "The manual name (optional)")
+	configureInitManualCmd.Flags().String("manual_name", "operator_manual", "The manual name (optional)")
 }
 
 // setupStructure creates the desired folder and file structure
 func setupStructure(manufacturer string, machineName string, manualName string) error {
 	// Define the folder and file structure
-	root, _ := os.Getwd()
-	root = filepath.Dir(root)
-	manualsDir := filepath.Join(root, "manuals")
+	manualsDir := getManualsDir()
 
 	fmt.Println("Root: " + manualsDir)
 
