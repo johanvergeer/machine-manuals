@@ -125,31 +125,7 @@
 % =========== DOCUMENT CONTENT ===========
 \begin{document}
 
-% Example content
-\IfLanguageName{ngerman}{
-  \chapter{Einleitung}
-  Dies ist das deutsche Handbuch.
-
-  \chapter{Kapitel 1}
-  Maschineninformationen auf Deutsch.
-}
-
-% English Section
-\IfLanguageName{english}{
-  \chapter{Introduction}
-  This is the English manual.
-
-  \chapter{Chapter 1}
-  Machine information in English.
-}
-
-% Dutch Section
-\IfLanguageName{dutch}{
-  \chapter{Inleiding}
-  Dit is de Nederlandse handleiding.
-
-  \chapter{Hoofdstuk 1}
-  Machine-informatie in het Nederlands.
-}
+\include{chapters/chapter0}
+\include{chapters/chapter1}
 
 \end{document}
