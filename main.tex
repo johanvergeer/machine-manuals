@@ -14,6 +14,9 @@
 \usepackage[ngerman, english, dutch]{babel}
 \usepackage{iflang}
 \usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{mdframed}
 
 % ============ GENERAL SETTINGS ============
 \renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
@@ -121,6 +124,19 @@
 % =========== LIST FORMATTING =============
 \renewcommand{\labelitemi}{-}
 \setlist[itemize,1]{left=0pt}
+
+% =========== CUSTOM COMMANDS =============
+\newcommand{\notebox}[2]{%
+    \noindent
+    \begin{minipage}[t]{2cm} % Label in a 2cm-wide top-aligned box
+        \textbf{#1:}
+    \end{minipage}%
+    \hspace{0.5em}% Small horizontal space between label and text
+    \begin{minipage}[t]{\dimexpr\textwidth-2.5cm\relax} % Remaining width for the body
+        #2
+    \end{minipage}%
+    \vspace{1em} % Adjust the spacing as needed
+}
 
 % =========== DOCUMENT CONTENT ===========
 \begin{document}
