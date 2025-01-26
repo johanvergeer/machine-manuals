@@ -13,6 +13,7 @@
 \usepackage{etoolbox}       % For resetting counters
 \usepackage[ngerman, english, dutch]{babel}
 \usepackage{iflang}
+\usepackage{enumitem}
 
 % ============ GENERAL SETTINGS ============
 \renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
@@ -115,6 +116,10 @@
 \newcommand{\DE}[1]{\foreignlanguage{ngerman}{#1}} % Short for German
 \newcommand{\EN}[1]{\foreignlanguage{english}{#1}} % Short for English
 \newcommand{\NL}[1]{\foreignlanguage{dutch}{#1}}   % Short for Dutch
+
+% =========== LIST FORMATTING =============
+\renewcommand{\labelitemi}{-}
+\setlist[itemize,1]{left=0pt}
 
 % =========== DOCUMENT CONTENT ===========
 \begin{document}
