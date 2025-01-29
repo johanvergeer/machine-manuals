@@ -18,9 +18,13 @@
 \usepackage{makecell}
 \usepackage{mdframed}
 \usepackage{amsmath}
+\usepackage[english]{babel}  % Replace with your language if needed
 \usepackage{csquotes}
 \usepackage{float}
 \usepackage{adjustbox}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{changepage}
+\usepackage{placeins}
 
 % ============ GENERAL SETTINGS ============
 \renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
@@ -144,15 +148,23 @@
 
 \newcommand{\infoBullet}[2]{\noindent $\bullet$ #1, see Page #2.}
 
-\newcommand{\sectionLikeSubsection}[1]{%
+\newcommand{\sectionLikeSubsection}[2][]{%
     \newpage
-    \subsection{\MakeUppercase{\textbf{\uline{#1}}}}
+    \subsection{\MakeUppercase{\textbf{#2}}%
+    \if\relax\detokenize{#1}\relax\else\quad {\normalfont #1}\fi}
 }
+
+\flushbottom
+
+\DeclareQuoteStyle[american]{english}
+  {\textquotedblleft}{\textquotedblright} % Opening and closing quotes
+  {\textquotedblleft}{\textquotedblright} % Inner opening and closing quotes
 
 % =========== DOCUMENT CONTENT ===========
 \begin{document}
 
 \include{chapters/chapter0}
 \include{chapters/chapter1}
+\include{chapters/chapter2}
 
 \end{document}
