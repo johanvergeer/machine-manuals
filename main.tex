@@ -1,4 +1,4 @@
-\documentclass[openany, 11pt]{book}
+\documentclass[openany,11pt]{book}
 
 % ============== PACKAGES ==============
 \usepackage{graphicx}       % For including images
@@ -18,13 +18,13 @@
 \usepackage{makecell}
 \usepackage{mdframed}
 \usepackage{amsmath}
-\usepackage[english]{babel}  % Replace with your language if needed
 \usepackage{csquotes}
 \usepackage{float}
 \usepackage{adjustbox}
 \usepackage[absolute,overlay]{textpos}
 \usepackage{changepage}
-\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{perpage}
 
 % ============ GENERAL SETTINGS ============
 \renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
@@ -133,6 +133,10 @@
 \renewcommand{\labelitemi}{-}
 \setlist[itemize,1]{left=0pt}
 
+% ======== FOOTNOTE FORMATTING ===========
+
+\MakePerPage{footnote}
+
 % =========== CUSTOM COMMANDS =============
 \newcommand{\notebox}[2]{%
     \noindent
@@ -154,17 +158,12 @@
     \if\relax\detokenize{#1}\relax\else\quad {\normalfont #1}\fi}
 }
 
-\flushbottom
-
-\DeclareQuoteStyle[american]{english}
-  {\textquotedblleft}{\textquotedblright} % Opening and closing quotes
-  {\textquotedblleft}{\textquotedblright} % Inner opening and closing quotes
-
 % =========== DOCUMENT CONTENT ===========
 \begin{document}
 
 \include{chapters/chapter0}
 \include{chapters/chapter1}
 \include{chapters/chapter2}
+\include{chapters/chapter3}
 
 \end{document}
