@@ -62,9 +62,12 @@
 \setlength{\headsep}{10pt}        % Space between the header and content
 
 \pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{%
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % Set both left and right marks
+}
 \fancyhf{} % Clear default header/footer content
 \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Add logo on the left
-\fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}    % Add centered header text
+\fancyhead[C]{\raisebox{.7\height}{\textbf{\makecell{MH 400 E \\ \rightmark}}}}
 \fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Add page number on the right
 \renewcommand{\headrulewidth}{0pt} % Remove header rule line
 
@@ -160,6 +163,11 @@
     \newpage
     \subsection{\MakeUppercase{\textbf{#2}}%
     \if\relax\detokenize{#1}\relax\else\quad {\normalfont #1}\fi}
+}
+
+\newcommand{\setsectiontitle}[1]{%
+  \section{#1}%
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % Ensure consistent uppercase across all pages
 }
 
 % =========== DOCUMENT CONTENT ===========
