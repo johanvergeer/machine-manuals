@@ -1,7 +1,7 @@
 \refstepcounter{chapter}
 \addcontentsline{toc}{chapter}{General Description of the Machine}
 
-\section{Technical Data}
+\setsectiontitle{Technical Data}
 
 \subsection{Work Area}
 Adjustment of the cross support:
@@ -83,7 +83,9 @@ Space requirements (without expansion dimensions):
     \item Height: \dotfill 1,830 mm
 \end{itemize}
 
-\section{Machine Overview - Main Component Designation}
+\setsectiontitle{Machine Overview}
+
+\subsection*{Main Components Overview} % Unnumbered subsection for the first page title
 
 \begin{figure}[h]
     \centering
@@ -107,8 +109,6 @@ Space requirements (without expansion dimensions):
 \end{enumerate}
 
 \notebox{NOTE}{Description of the operating elements for the worktables can be found in Section 4 of the operator's manual.}
-
-\sectionLikeSubsection{Description of Machine Components}
 
 \subsection{Machine Stand with Base}
 
@@ -368,7 +368,7 @@ Inside the control cabinet door (8) are the main switch (9) and the adjustment m
 
 \notebox{NOTE}{The numbers in parentheses correspond to circuit diagram labels.}
 
-\section{Movement Directions}
+\setsectiontitle{Movement Directions}
 
 \begin{figure}[h]
     \centering
@@ -388,14 +388,16 @@ Inside the control cabinet door (8) are the main switch (9) and the adjustment m
                 & Forward \enquote{-} or Backward \enquote{+}. \\
 \end{tabular}
 
-\section{Control Station (Machine)}
+\setsectiontitle{Control Station (Machine)}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.38\textwidth]{chapter2/control_station.jpg} % Replace with actual filename
 \end{figure}
 
-\sectionLikeSubsection{Control Station - Function of the Operating Elements (Machine)}
+\newpage
+
+\subsection{Function of the Operating Elements}
 
 \begin{tabular}{|c|l|p{10cm}|}
     \hline\hline
@@ -412,9 +414,11 @@ Inside the control cabinet door (8) are the main switch (9) and the adjustment m
 
 \footnotetext[11]{After activation, the red emergency stop button remains locked. Before restarting the machine, the locking mechanism must be released by turning the emergency stop button to the right.}
 
-\setcounter{page}{4}
+\newpage
 
-\sectionLikeSubsection{Handheld Control Unit}
+\setcounter{page}{5}
+
+\subsection{Handheld Control Unit}
 
 For ease of setup when machining a workpiece, the CNC 432 control system is also equipped with a handheld control unit. It enables the operation of the following functions:
 
@@ -453,7 +457,7 @@ Safety activation is required for enabling the keyboard from the handheld contro
     \includegraphics[width=0.9\textwidth]{chapter2/handheld_control.jpg}
 \end{figure}
 
-\section{Gear Train Schematic}
+\setsectiontitle{Gear Train Schematic}
 \setcounter{section}{10}
 \begin{minipage}{\textwidth}
     \begin{adjustwidth}{-2cm}{-3cm}
@@ -463,8 +467,9 @@ Safety activation is required for enabling the keyboard from the handheld contro
     \label{fig:gear_train}
 \end{minipage}
 
-\sectionLikeSubsection[\texorpdfstring{14.48805/14.488111 (50/60Hz)}{14.48805-14.488111}]%
-{Gear Train Schematic - Main Gearbox}
+\newpage
+\subsection[\texorpdfstring{14.48805/14.488111 (50/60Hz)}{14.48805-14.488111}]%
+{Main Gearbox}
 
 \vspace{-.5cm}
 

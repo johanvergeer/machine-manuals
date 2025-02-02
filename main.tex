@@ -159,12 +159,6 @@
 
 \newcommand{\infoBullet}[2]{\noindent $\bullet$ #1, see Page #2.}
 
-\newcommand{\sectionLikeSubsection}[2][]{%
-    \newpage
-    \subsection{\MakeUppercase{\textbf{#2}}%
-    \if\relax\detokenize{#1}\relax\else\quad {\normalfont #1}\fi}
-}
-
 \newcommand{\setsectiontitle}[1]{%
   \section{#1}%
   \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % Ensure consistent uppercase across all pages
