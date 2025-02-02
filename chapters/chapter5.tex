@@ -1,0 +1,22 @@
+\refstepcounter{chapter}
+\addcontentsline{toc}{chapter}{CNC Control}
+
+\section{Linear Measurement System}
+
+\subsection*{The Linear Measurement Systems}
+The machine is equipped with three digital incremental linear measurement systems for precise positioning along the X, Y, and Z axes.\footnotemark[1]
+
+The resolution of these measurement systems, i.e., the smallest detectable absolute path unit, is 0.001 mm.
+
+The linear measurement systems are fully encapsulated and mounted directly on the linear guides of the machine slides. This ensures that the measured values correspond to the actual positions between the tool and the workpiece.
+
+\notebox{warning}{The linear measurement systems of the machine require no maintenance.}
+
+\subsection*{Functionality of the Linear Measurement System}
+A precision glass scale, which serves as the measuring body, moves along with the machine slide relative to a photoelectric scanning head with an opposing light source. As the scanning head moves, periodic light fluctuations occur, which are converted into sine waves by a silicon photodiode.
+
+The sine signals are shaped into square-wave pulses and electronically processed so that each displacement of the scale by 0.001 mm results in an increment of the linear measurement system, producing either a forward or backward counting pulse. By correctly counting these pulses from a freely definable reference point, the actual travel distance is determined.
+
+Additionally, the precision glass scale is equipped with a reference mark that serves as the absolute reference point of the linear measurement system.
+
+\footnotetext[1]{Coordinate axes, see sheet 2.03-1.}
