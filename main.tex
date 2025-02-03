@@ -29,6 +29,7 @@
 \usepackage{multirow}
 \usepackage{longtable}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
 
 % ============ GENERAL SETTINGS ============
 \renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
@@ -164,14 +165,28 @@
   \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % Ensure consistent uppercase across all pages
 }
 
+% Command to create circled text for single-digit numbers
+\newcommand{\circled}[1]{%
+    \tikz[baseline=(char.base)]{
+        \node[shape=circle, draw, inner sep=1pt] (char) {\footnotesize #1};
+    }%
+}
+
+% Command to create an ellipse for multi-digit numbers
+\newcommand{\ellipsed}[1]{%
+    \tikz[baseline=(char.base)]{
+        \node[draw, rounded corners=3pt, inner sep=2pt, minimum width=1.2em] (char) {\footnotesize #1};
+    }%
+}
+
 % =========== DOCUMENT CONTENT ===========
 \begin{document}
 
 \include{chapters/chapter0}
-\include{chapters/chapter1}
-\include{chapters/chapter2}
-\include{chapters/chapter3}
-\include{chapters/chapter4}
+% \include{chapters/chapter1}
+% \include{chapters/chapter2}
+% \include{chapters/chapter3}
+% \include{chapters/chapter4}
 \include{chapters/chapter5}
 \include{chapters/chapter6}
 \include{chapters/chapter7}
