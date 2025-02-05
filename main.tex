@@ -30,6 +30,8 @@
 \usepackage{longtable}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
+\usepackage{everypage}
+\usepackage{afterpage}
 
 % ============ GENERAL SETTINGS ============
 \renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
@@ -37,11 +39,24 @@
 
 % ============ PAGE NUMBERING ============
 \makeatletter
+% Define main page and optional subpage
+\newcommand{\subpagenumber}{} % Default: No subpage number
+
+% Command to set subpage number
+\newcommand{\setsubpage}[1]{%
+  \renewcommand{\subpagenumber}{.#1} % Set subpage (e.g., .1, .2)
+}
+
+% Command to clear subpage number after use (so it doesn't persist)
+\newcommand{\clearsubpage}{%
+  \renewcommand{\subpagenumber}{} % Reset to no subpage
+}
+
 \renewcommand{\thepage}{%
   \thechapter.%                % Include the chapter number
   \ifnum\c@section<10 0\fi%    % Add leading zero to single-digit section numbers
   \@arabic\c@section-%         % Render section number
-  \arabic{page}%               % Render the page number
+  \arabic{page}\subpagenumber%               % Render the page number
 }
 \makeatother
 
@@ -66,10 +81,21 @@
 \renewcommand{\sectionmark}[1]{%
   \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % Set both left and right marks
 }
+
+\newcommand{\defaultrevision}{7631} % Default revision number
+\newcommand{\revisionnumber}{\defaultrevision} % Start with default revision
+
+% Custom command to override the revision number (for a single page)
+\newcommand{\setrevision}[1]{%
+  \renewcommand{\revisionnumber}{#1} % Override revision for this page
+}
+
+\AddEverypageHook{\renewcommand{\revisionnumber}{\defaultrevision}}
+
 \fancyhf{} % Clear default header/footer content
 \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Add logo on the left
 \fancyhead[C]{\raisebox{.7\height}{\textbf{\makecell{MH 400 E \\ \rightmark}}}}
-\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}    % Add page number on the right
+\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage/\revisionnumber}}}    % Add page number on the right
 \renewcommand{\headrulewidth}{0pt} % Remove header rule line
 
 % Header for chapter title pages
