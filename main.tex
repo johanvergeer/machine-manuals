@@ -106,6 +106,12 @@
   \fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}
 }
 
+\fancypagestyle{coverpage}{%
+  \fancyhf{} % Clear header and footer
+  \renewcommand{\headrulewidth}{0pt} % Remove header line
+  \renewcommand{\footrulewidth}{0pt} % Remove footer line
+}
+
 % ========== BACKGROUND CONFIG ==========
 \backgroundsetup{%
   scale=1,

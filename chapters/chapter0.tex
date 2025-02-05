@@ -1,2 +1,38 @@
 \refstepcounter{chapter}
 \addcontentsline{toc}{chapter}{INHALTSVERZEIGNIS}
+
+\thispagestyle{coverpage}
+
+\begin{titlepage}
+    \thispagestyle{coverpage}
+
+    \vspace*{0cm}
+
+    {\sffamily
+
+        \noindent
+        \begin{tabularx}{\textwidth}{X r}
+            \includegraphics[height=1.5cm]{maho-logo.png} &
+            {\Huge \textbf{Operator's Manual}} \\
+            \multicolumn{2}{l}{\rule{\textwidth}{0.4mm}} \\
+            & {\normalsize Nr. 76.34521}
+        \end{tabularx}
+
+        \centering
+        \vspace{2cm}
+
+        {\fontsize{60pt}{62pt} \bfseries MH400E}\\[1cm]
+
+        \includegraphics[width=0.9\textwidth]{chapter0/cover-image.jpg} 
+
+        \vfill
+
+         \noindent
+         \begin{center}
+             \parbox{\textwidth}{\centering {\Huge \textbf{Operation - Maintenance - Repair}}}
+         \end{center}
+    }
+\end{titlepage}
+
+\clearpage % Move to the next page and resume normal styling
+\pagestyle{fancy} % Re-enable the default layout
