@@ -1,0 +1,228 @@
+\documentclass[openany,11pt]{book}
+
+% ============== PACKAGES ==============
+\usepackage{graphicx}       % For including images
+\usepackage{fancyhdr}       % For customizing headers and footers
+\usepackage{titlesec}       % For formatting section and chapter titles
+\usepackage{textcase}       % For text case transformations
+\usepackage{ulem}           % For underlining and strikeout text
+\usepackage{tcolorbox}      % For creating colored/text-boxes
+\usepackage{courier}        % For using Courier as a font
+\usepackage[margin=2.5cm, top=2cm]{geometry} % Set general page margins
+\usepackage{background}     % For adding a background box on each page
+\usepackage{etoolbox}       % For resetting counters
+\usepackage[ngerman, english, dutch]{babel}
+\usepackage{iflang}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{mdframed}
+\usepackage{amsmath}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{changepage}
+\usepackage{tabularx}
+\usepackage{perpage}
+\usepackage{parskip}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{everypage}
+\usepackage{afterpage}
+
+% ============ GENERAL SETTINGS ============
+\renewcommand{\rmdefault}{pcr} % Set Courier as the default font family
+\graphicspath{{./}{./images/}} % Define paths for images
+
+% ============ PAGE NUMBERING ============
+\makeatletter
+% Define main page and optional subpage
+\newcommand{\subpagenumber}{} % Default: No subpage number
+
+% Command to set subpage number
+\newcommand{\setsubpage}[1]{%
+  \renewcommand{\subpagenumber}{.#1} % Set subpage (e.g., .1, .2)
+}
+
+% Command to clear subpage number after use (so it doesn't persist)
+\newcommand{\clearsubpage}{%
+  \renewcommand{\subpagenumber}{} % Reset to no subpage
+}
+
+\renewcommand{\thepage}{%
+  \thechapter.%                % Include the chapter number
+  \ifnum\c@section<10 0\fi%    % Add leading zero to single-digit section numbers
+  \@arabic\c@section-%         % Render section number
+  \arabic{page}\subpagenumber%               % Render the page number
+}
+\makeatother
+
+% Reset section page numbers per chapter
+\newcounter{sectioninchapter}
+\pretocmd{\chapter}{\setcounter{sectioninchapter}{0}}{}{}
+\pretocmd{\section}{%
+  \ifnum\value{sectioninchapter}=0
+    \setcounter{page}{1}
+  \else
+    \clearpage\setcounter{page}{1}
+  \fi
+  \stepcounter{sectioninchapter}
+}{}{}
+
+% ============= HEADER CONFIG =============
+\setlength{\topmargin}{-2cm}      % Move content block closer to the top
+\setlength{\headheight}{33pt}     % Increase header height to fit the logo
+\setlength{\headsep}{10pt}        % Space between the header and content
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{%
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % Set both left and right marks
+}
+
+\newcommand{\defaultrevision}{7631} % Default revision number
+\newcommand{\revisionnumber}{\defaultrevision} % Start with default revision
+
+% Custom command to override the revision number (for a single page)
+\newcommand{\setrevision}[1]{%
+  \renewcommand{\revisionnumber}{#1} % Override revision for this page
+}
+
+\AddEverypageHook{\renewcommand{\revisionnumber}{\defaultrevision}}
+
+\fancyhf{} % Clear default header/footer content
+\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}} % Add logo on the left
+\fancyhead[C]{\raisebox{.7\height}{\textbf{\makecell{MH 400 E \\ \rightmark}}}}
+\fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage/\revisionnumber}}}    % Add page number on the right
+\renewcommand{\headrulewidth}{0pt} % Remove header rule line
+
+% Header for chapter title pages
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}}
+  \fancyhead[C]{\raisebox{1.2\height}{\textbf{MH 400 E}}}
+  \fancyhead[R]{\raisebox{1.2\height}{\textbf{\thepage}}}
+}
+
+\fancypagestyle{coverpage}{%
+  \fancyhf{} % Clear header and footer
+  \renewcommand{\headrulewidth}{0pt} % Remove header line
+  \renewcommand{\footrulewidth}{0pt} % Remove footer line
+}
+
+% ========== BACKGROUND CONFIG ==========
+\backgroundsetup{%
+  scale=1,
+  color=black,
+  opacity=1,
+  angle=0,
+  position=current page.south west,
+  vshift=1cm,
+  hshift=2cm,
+  nodeanchor=south west,
+  contents={%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[anchor=south west, inner sep=0] (box) at (0, 0) {
+        \begin{tcolorbox}[
+          colframe=black, 
+          colback=white, 
+          boxrule=0.5mm,
+          sharp corners, 
+          width=\dimexpr\paperwidth-3cm\relax,
+          height=\dimexpr\paperheight-3cm\relax
+        ]
+        \end{tcolorbox}
+      };
+      \draw[black, thick] ([yshift=1cm]box.south west) -- ([yshift=1cm]box.south east);
+      \node[anchor=south, yshift=-.6cm] at ([yshift=1cm]box.south) {
+        \footnotesize \textit{Unofficial translation - Not affiliated with DMG-Mori or Maho.}
+      };
+    \end{tikzpicture}
+  }
+}
+
+% ========== CHAPTER FORMATTING ==========
+\titleformat{\chapter}[block]{\normalfont\Large\bfseries}{}{0pt}{\chapterTitleStyle}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+\newcommand{\chapterTitleStyle}[1]{%
+  \vspace{-1em}
+  \underline{\MakeUppercase{#1}}
+  \vspace{1em}
+}
+\setcounter{chapter}{-1} % Start chapter numbering at 0
+
+% ========== SECTION FORMATTING ==========
+\titleformat{\section}[block]{\normalfont\large\bfseries}{}{0pt}{\sectionTitleStyle}
+\titlespacing*{\section}{0pt}{10pt}{10pt}
+\newcommand{\sectionTitleStyle}[1]{%
+  \underline{\MakeUppercase{#1}}
+}
+
+% ======== SUBSECTION FORMATTING =========
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{}{0pt}{\uline}
+\titlespacing*{\subsection}{0pt}{10pt}{10pt}
+
+% Define commands for easier switching
+\newcommand{\DE}[1]{\foreignlanguage{ngerman}{#1}} % Short for German
+\newcommand{\EN}[1]{\foreignlanguage{english}{#1}} % Short for English
+\newcommand{\NL}[1]{\foreignlanguage{dutch}{#1}}   % Short for Dutch
+
+% =========== LIST FORMATTING =============
+\renewcommand{\labelitemi}{-}
+\setlist[itemize,1]{left=0pt}
+
+% ======== FOOTNOTE FORMATTING ===========
+
+\MakePerPage{footnote}
+
+% =========== CUSTOM COMMANDS =============
+\newcommand{\notebox}[2]{%
+    \noindent
+    \begin{minipage}[t]{2cm} % Label in a 2cm-wide top-aligned box
+        \textbf{#1:}
+    \end{minipage}%
+    \hspace{0.5em}% Small horizontal space between label and text
+    \begin{minipage}[t]{\dimexpr\textwidth-2.5cm\relax} % Remaining width for the body
+        #2
+    \end{minipage}%
+    \vspace{1em} % Adjust the spacing as needed
+}
+
+\newcommand{\infoBullet}[2]{\noindent $\bullet$ #1, see Page #2.}
+
+\newcommand{\setsectiontitle}[1]{%
+  \section{#1}%
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}} % Ensure consistent uppercase across all pages
+}
+
+% Command to create circled text for single-digit numbers
+\newcommand{\circled}[1]{%
+    \tikz[baseline=(char.base)]{
+        \node[shape=circle, draw, inner sep=1pt] (char) {\footnotesize #1};
+    }%
+}
+
+% Command to create an ellipse for multi-digit numbers
+\newcommand{\ellipsed}[1]{%
+    \tikz[baseline=(char.base)]{
+        \node[draw, rounded corners=3pt, inner sep=2pt, minimum width=1.2em] (char) {\footnotesize #1};
+    }%
+}
+
+% =========== DOCUMENT CONTENT ===========
+\begin{document}
+
+\include{chapters/chapter0}
+\include{chapters/chapter1}
+\include{chapters/chapter2}
+\include{chapters/chapter3}
+\include{chapters/chapter4}
+\include{chapters/chapter5}
+\include{chapters/chapter6}
+\include{chapters/chapter7}
+\include{chapters/chapter8}
+\include{chapters/chapter9}
+
+\end{document}
