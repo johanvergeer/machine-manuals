@@ -1,145 +1,161 @@
 \documentclass[openany,11pt]{book}
 
 % ============== PACKAGES ==============
-\usepackage[a4paper,left=40mm,right=20mm,top=20mm,bottom=20mm,twoside=false]{geometry} % Adjust margins
-\usepackage{graphicx}       % For including images
-\usepackage{titlesec}       % For customizing headings
-\usepackage{fancyhdr}       % For custom headers and footers
-\usepackage{inconsolata}  % Use Inconsolata monospaced font
-\usepackage{enumitem}
-\usepackage[absolute,overlay]{textpos}
-\usepackage{xparse} % Allows multiple optional arguments
-\usepackage{pgffor}
-\usepackage{calc}  % Enables arithmetic with dimensions
-\usepackage{array} % Make sure the array package is loaded
-\usepackage{zref-savepos} % Required for position tracking
-\usepackage{marginnote} % Required for marginnote functionality
-\usepackage{listings}
-\usepackage{adjustbox}
-\usepackage{pgffor}
-\usepackage{textpos}
-\usepackage{tabularx}
-\usepackage[T1]{fontenc}
-\usepackage{tgheros}
-\usepackage{tocloft}
-\usepackage[pdfusetitle, bookmarks, bookmarksopen, bookmarksdepth=3]{hyperref}
-\usepackage{etoolbox}  % Needed to modify page number formatting
+% Geometry: Defines page layout and margins
+\usepackage[a4paper,left=40mm,right=20mm,top=20mm,bottom=20mm,twoside=false]{geometry}
+\usepackage{graphicx}     % Handles image inclusion
+\usepackage{titlesec}     % Allows customization of section/chapter titles
+\usepackage{fancyhdr}     % Custom headers and footers
+\usepackage{inconsolata}  % Monospaced font
+\usepackage{enumitem}     % Customization for lists
+\usepackage[absolute,overlay]{textpos} % Positioning elements on the page
+\usepackage{xparse}       % Advanced macro parsing
+\usepackage{pgffor}       % Iteration for loops in macros
+\usepackage{calc}         % Enables arithmetic with dimensions
+\usepackage{array}        % Enhances array and tabular environments
+\usepackage{zref-savepos} % Position tracking for elements
+\usepackage{marginnote}   % Adds margin notes
+\usepackage{listings}     % Code listings
+\usepackage{adjustbox}    % Alignment and resizing of content
+\usepackage{textpos}      % Absolute text positioning
+\usepackage{tabularx}     % Flexible table width management
+\usepackage[T1]{fontenc}  % Better font encoding
+\usepackage{tgheros}      % Sans-serif font
+\usepackage{tocloft}      % Customizing Table of Contents
+\usepackage[pdfusetitle, bookmarks, bookmarksopen, bookmarksdepth=3]{hyperref} % PDF metadata and bookmarks
+\usepackage{etoolbox}     % Extends LaTeX macros
 
-
-\pagestyle{fancy}
-\fancyhf{}  % Clear all headers and footers
-
-\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}}
-\fancyhead[C]{{\textbf{CNC432}}}
-\fancyhead[R]{\thepage}  % Page number in the top-right on all pages
-
-\fancyfoot[C]{\textit{Unofficial translation - Not affiliated with DMG-Mori or Maho.}} % Footer disclaimer
-
-\renewcommand{\headrulewidth}{0.4pt}  % Restore horizontal header line
-\renewcommand{\footrulewidth}{0.4pt}  % Restore horizontal footer line
-\renewcommand{\cftdot}{.}
-% Increase the space below the header line
-\setlength{\headsep}{30pt}  % Adjust as needed
-
-% Ensure chapter pages also follow this format
-\fancypagestyle{plain}{%
-  \fancyhf{}  % Clear all headers and footers
-  \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}}
-  \fancyhead[C]{{\textbf{CNC432}}}
-  \fancyhead[R]{\thepage}  % Force page number to top-right
-
-  \fancyfoot[C]{\textit{Unofficial translation - Not affiliated with DMG-Mori or Maho.}} % Footer disclaimer
-
-  \renewcommand{\headrulewidth}{0.4pt}  % Restore horizontal header line
-  \renewcommand{\footrulewidth}{0.4pt}  % Restore horizontal footer line
-
-  \setlength{\headsep}{5pt}  % Increase spacing for chapter pages as well
-}
-
-% ============ GENERAL SETTINGS ============
-\renewcommand{\rmdefault}{zi4}
+% ============== GENERAL SETTINGS ==============
+\renewcommand{\rmdefault}{zi4} % Set monospaced font
 \graphicspath{{./}{./images/}} % Define paths for images
 
-% Disable paragraph indentation
+% Remove paragraph indentation and add spacing between paragraphs
 \setlength{\parindent}{0pt}
-% Add spacing between paragraphs
 \setlength{\parskip}{6pt}
 
+% Adjust list formatting
 \setlist[itemize,enumerate]{nosep, leftmargin=*}
 
-% Customize chapter headings: all caps, left-aligned, number in margin
-\titleformat{\chapter}
-  [hang]  % Number in margin
-  {\normalfont\Large\bfseries\MakeUppercase}  % All caps, large, bold
-  {\llap{\thechapter\quad}}  % Move number to margin
-  {0pt}  % No spacing between number and title
-  {\underline}  
+% Rename "Contents" to "Table of Contents"
+\renewcommand{\contentsname}{Table of Contents}
 
-\titlespacing{\chapter}{0pt}{5pt}{5pt}  % {left}{before}{after}
-
-% Customize section headings: left-aligned, number in margin
-\titleformat{\section}
-  [hang]  % Number in margin
-  {\normalfont\Large\bfseries}  
-  {\llap{\thesection\quad}}  % Move number to margin
-  {0pt}  
-  {}  
-
-\titlespacing{\section}{0pt}{5pt}{5pt}  % {left}{before}{after}
-
-% Customize section headings: left-aligned, number in margin
-\titleformat{\subsection}
-  [hang]  % Number in margin
-  {\normalfont\Large\bfseries}  
-  {\llap{\thesubsection\quad}}  % Move number to margin
-  {0pt}  
-  {}  
-
-\titlespacing{\subsection}{0pt}{5pt}{5pt}  % {left}{before}{after}
-
-% Customize section headings: left-aligned, number in margin
-\titleformat{\subsubsection}
-  [hang]  % Number in margin
-  {\normalfont\Large\bfseries}  
-  {\llap{\thesubsubsection\quad}}  % Move number to margin
-  {0pt}  
-  {}  
-
+% Control the depth of numbered sections (1 = chapters, 2 = sections, 3 = subsections, etc.)
 \setcounter{secnumdepth}{3}
-\titlespacing{\subsubsection}{0pt}{5pt}{5pt}  % {left}{before}{after}
 
+% ============== HEADER & FOOTER ==============
+\pagestyle{fancy}
+\fancyhf{} % Clear default header and footer
+\fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}}
+\fancyhead[C]{\textbf{CNC432}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\textit{Unofficial translation - Not affiliated with DMG-Mori or Maho.}}
+
+\renewcommand{\headrulewidth}{0.4pt} % Header line thickness
+\renewcommand{\footrulewidth}{0.4pt} % Footer line thickness
+\setlength{\headsep}{30pt} % Space between text and header
+
+% Ensure chapter pages also follow this format
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[height=1cm]{maho-logo.png}}
+  \fancyhead[C]{\textbf{CNC432}}
+  \fancyhead[R]{\thepage}
+  \fancyfoot[C]{\textit{Unofficial translation - Not affiliated with DMG-Mori or Maho.}}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \setlength{\headsep}{5pt}
+}
+
+% ============== CUSTOM HEADINGS ==============
+% Chapter titles: Uppercase, bold, underlined, number in margin
+\titleformat{\chapter}
+  [hang]
+  {\normalfont\Large\bfseries\MakeUppercase}
+  {\llap{\thechapter\quad}}
+  {0pt}
+  {\underline}
+\titlespacing{\chapter}{0pt}{5pt}{5pt}
+
+% Section titles: Bold, number in margin
+\titleformat{\section}
+  [hang]
+  {\normalfont\Large\bfseries}
+  {\llap{\thesection\quad}}
+  {0pt}{}
+\titlespacing{\section}{0pt}{5pt}{5pt}
+
+% Subsection titles
+\titleformat{\subsection}
+  [hang]
+  {\normalfont\Large\bfseries}
+  {\llap{\thesubsection\quad}}
+  {0pt}{}
+\titlespacing{\subsection}{0pt}{5pt}{5pt}
+
+% Subsubsection titles
+\titleformat{\subsubsection}
+  [hang]
+  {\normalfont\Large\bfseries}
+  {\llap{\thesubsubsection\quad}}
+  {0pt}{}
+\titlespacing{\subsubsection}{0pt}{5pt}{5pt}
+
+% ============== CUSTOM COMMANDS ==============
+
+% Command: \marginnoteicon
+% --------------------------------------------
+% Adds an icon in the margin at a given position.
+% 
+% Parameters:
+% #1 [optional] Icon height (default: 1cm)
+% #2 Vertical position on the page
+% #3 List of icon filenames (comma-separated, no spaces)
+% #4 [optional] Horizontal offset (default: 0cm)
 \NewDocumentCommand{\marginnoteicon}{ O{1cm} m m O{0cm} }{%
     \begingroup
-    % Count number of images
     \newcount\imagecount
     \imagecount=0
     \foreach \icon in {#3} {%
         \advance\imagecount by 1
     }
-
-    % Compute total width: (image count * image height) + (gaps between images)
-    \edef\totalwidth{\the\numexpr \imagecount \relax} % Image count as number
-    \edef\totalwidthdim{\the\numexpr \imagecount * \dimexpr #1\relax + (\imagecount - 1) * 0.1mm \relax} % Compute width
-
-    % Start drawing from the leftmost image position
+    \edef\totalwidthdim{\the\numexpr \imagecount * \dimexpr #1\relax + (\imagecount - 1) * 0.1mm \relax}
     \begin{textblock*}{2cm}(\dimexpr + #4\relax - \totalwidthdim + #1\relax, #2)
         \foreach \icon in {#3} {%
             \includegraphics[height=#1]{icons/\icon}%
             \advance\imagecount by -1
             \ifnum\imagecount>0
-                \hspace{0.1mm} % Add space between images, but not after last one
+                \hspace{0.1mm}
             \fi
         }
     \end{textblock*}
     \endgroup
 }
 
+% Command: \procedure
+% ----------------------
+% Formats the word "Procedure" as underlined text.
 \newcommand{\procedure}{\underline{Procedure:}}
+
+% Command: \notes
+% ----------------------
+% Formats the word "Notes" as underlined text.
 \newcommand{\notes}{\underline{Notes:}}
+
+% Command: \example
+% ----------------------
+% Formats the word "Example" as underlined text.
 \newcommand{\example}{\underline{Example:}}
 
-\reversemarginpar  % Ensures the icons appear in the left margin
+% Reverse margin notes to appear on the left
+\reversemarginpar
 
+% Command: \iconitem
+% ----------------------
+% Creates a list item with one or more icons in the margin.
+% 
+% Parameters:
+% #1 Text content of the list item
+% #2 List of icon filenames (comma-separated, no spaces)
 \newcommand{\iconitem}[2]{
     \item \marginnote{
         \foreach \icon in {#2} {
@@ -147,8 +163,6 @@
         }
     } #1
 }
-
-\renewcommand{\contentsname}{Table of Contents}
 
 \begin{document}
 
