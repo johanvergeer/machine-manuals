@@ -84,8 +84,16 @@ func setupStructure(manufacturer string, machineName string, manualName string) 
 		file.Close() // Close the file after creation
 	}
 
+	// Create main.tex file
 	mainTexPath := filepath.Join(manualDir, "latex", "main.tex")
 	_, _ = os.Create(mainTexPath)
+
+	// Create chatgpt_rules.md file with default content
+	chatgptRulesPath := filepath.Join(manualDir, "latex", "chatgpt_rules.md")
+	err := createChatGPTRulesFile(chatgptRulesPath)
+	if err != nil {
+		return fmt.Errorf("failed to create chatgpt_rules.md: %w", err)
+	}
 
 	fmt.Printf("Directory structure created successfully at: %s\n", manualsDir)
 	return nil
@@ -102,4 +110,31 @@ func folderExists(path string) bool {
 		return false
 	}
 	return info.IsDir()
+}
+
+// createChatGPTRulesFile writes the default rules into chatgpt_rules.md
+func createChatGPTRulesFile(filePath string) error {
+	defaultContent := `# ChatGPT Processing Rules for This Manual
+
+This file defines specific **translation and formatting rules** for ChatGPT when processing this manual.
+
+## **General Translation Rules**
+- Translate all text **to English**.
+- Keep technical terms consistent with machinist terminology.
+- Do **not** add or invent text — only translate what is present.
+
+## **Formatting Conventions**
+- Convert **underlined text** to \textbf{} (bold) in LaTeX.
+
+## **Page-Specific Handling**
+- If a page contains only a table, convert it to a tabularx LaTeX table.
+- If a page has hand-drawn annotations, **omit them** unless they contain relevant data.
+
+---
+
+This file can be modified for **manual-specific instructions**.
+`
+
+	// Write content to file
+	return os.WriteFile(filePath, []byte(defaultContent), 0644)
 }
