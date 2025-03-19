@@ -1,11 +1,15 @@
 \documentclass[openany,11pt]{book}
 
-\usepackage[a4paper,left=20mm,right=20mm,top=20mm,bottom=20mm,twoside=false]{geometry}
+\usepackage[a4paper,left=20mm,right=20mm,top=20mm,bottom=5mm,twoside=false]{geometry}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{background} % <-- NEW: Add background package
 \usepackage{tikz}
 \usepackage{tcolorbox} 
+\usepackage{titlesec}     % Allows customization of section/chapter titles
+\usepackage{placeins} % Add at the top for FloatBarrier
+
+\renewcommand{\familydefault}{\ttdefault}
 
 \pagestyle{fancy}
 \fancyhf{} % Clear default header/footer
@@ -69,8 +73,98 @@
   }
 }
 
+% Section titles: Bold, number in margin
+\titleformat{\section}
+  [hang]
+  {}
+  {\thesection}
+  {0pt}
+  {\underline}
+\titlespacing{\section}{0pt}{-10pt}{-10pt}
+
+% \renewcommand{\arraystretch}{0.85} % Adjust this value as needed
+
 \begin{document}
 
-Hello there
+\begin{table}[h]
+    \begin{tabular}{ll}
+        \textasteriskcentered01 & System program error \\
+        \textasteriskcentered02 & Calculation error \\
+        \textasteriskcentered03 & NC temperature exceeds 65°C \\
+        \textasteriskcentered05 & Emergency stop triggered by machine \\
+        \textasteriskcentered95 & System error (calculation error) \\
+        \textasteriskcentered96 & System error (division by zero) \\
+        \textasteriskcentered97 & System error (overflow) \\
+        \textasteriskcentered98 & System error (unexpected interrupt) \\
+        \textasteriskcentered99 & System error (debug mode) \\
+    \end{tabular}
+\end{table}
+
+\vspace{-5mm}
+\noindent Note: Instead of ‘\textasteriskcentered’, the hash symbol (\#) is also used.
+
+\begin{table}[h]
+    \begin{tabular}{lll}
+    M01 & Checksum Error & Machine constants memory (RAM) \\
+    M02 & Checksum Error & Tool memory (RAM) \\
+    M03 & Checksum Error & Background memory for machine constants (RAM) \\
+    M20 & Checksum Error & EPROM 1-8 or system PROM checksum error \\
+    M21 & Checksum Error & EPROM 9-12 \\
+    M22 & Checksum Error & EPROM 13-16 \\
+    M23 & Checksum Error & EPROM 23, 24, or 25 \\
+    M60 & Checksum Error & Workpiece program/macro program memory (RAM) \\
+    M70 & Communication Error & Hardware fault in communication processor \\
+    \end{tabular}
+\end{table}
+
+\section*{Axes}
+
+\begin{table}[h]
+    \begin{tabular}{lll}
+    (X,Y,Z,A,B,C) & 01 & Pre-alarm: Linear measurement system \\
+    (X,Y,Z,A,B,C) & 02 & Alarm: Measurement system error \\
+    (X,Y,Z,A,B,C) & 03 & Power supply failure in the measurement system \\
+    (X,Y,Z,A,B,C) & 04 & Maximum following error exceeded \\
+    (X,Y,Z,A,B,C) & 05 & Software limit switch triggered \\
+    (X,Y,Z,A,B,C) & 06 & Calculated axis speed too high, \\
+                     &    & based on rapid traverse speed in NC \\
+    (X,Y,Z,A,B,C) & 07 & Standstill monitoring activated \\
+    (X,Y,Z,A,B,C) & 08 & Calculated axis speed too high, \\
+                     &    & based on feed rate in NC \\
+    (X,Y,Z,A,B,C) & 09 & Dynamic following error exceeded \\
+    (X,Y,Z,A,B,C) & 10 & Linear compensation: Correction values sum > 200 increments \\
+    (X,Y,Z,A,B,C) & 11 & Linear compensation: Support point distance < 100 increments \\
+    (X,Y,Z,A,B,C) & 12 & Cyclic compensation: Correction values sum > 200 increments \\
+    (X,Y,Z,A,B,C) & 13 & Cyclic compensation: Support point distance < 100 increments \\
+    \end{tabular}
+\end{table}
+
+\FloatBarrier 
+
+\section*{Main Spindle Drive}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    S01 & Pre-alarm: Measurement system \\
+    S02 & Alarm: Measurement system error \\
+    S03 & Power supply failure in the measurement system \\
+    S04 & Maximum following error exceeded \\
+    S05 & Position window not reached \\
+    S07 & Standstill monitoring activated \\
+    \end{tabular}
+\end{table}
+
+\section*{Electronic Handwheel}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    W1 (101)  & Pre-alarm: Measurement system \\
+    W2 (102)  & Alarm: Measurement system error \\
+    W3 (103)  & Power supply failure in the measurement system \\
+    W105      & Software limit switch triggered \\
+    \end{tabular}
+\end{table}
+
+\newpage
 
 \end{document}
