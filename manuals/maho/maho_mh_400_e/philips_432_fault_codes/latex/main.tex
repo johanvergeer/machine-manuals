@@ -82,7 +82,7 @@
   {\underline}
 \titlespacing{\section}{0pt}{-10pt}{-10pt}
 
-% \renewcommand{\arraystretch}{0.85} % Adjust this value as needed
+\renewcommand{\arraystretch}{0.9} % Adjust this value as needed
 
 \begin{document}
 
@@ -166,5 +166,825 @@
 \end{table}
 
 \newpage
+\section*{Programming}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    P01 & Invalid word in block \\
+    P02 & Required address missing, e.g., G04 X \\
+    P03 & Invalid G-function \\
+    P04 & No feedrate programmed \\
+    P05 & Rotation axis and G02, G03 programmed \\
+    P06 & Tool axis mirrored (G73) and cycle was called (G79) \\
+    P07 & Programmed parameter too large \\
+    P08 & G14, G29: Block number missing in part program or macro not available \\
+    P09 & G22: Requested macro program not found \\
+    P10 & G22: Macro program nested more than 8×, G14 more than 3×, G23 more than 1× \\
+    P11 & G22: Return from macro not possible \\
+    P12 & G14, G29 were programmed in Teach mode \\
+    P13 & Circular interpolation with G43, G44 programmed \\
+    P14 & G77, G79 programmed but no cycle defined \\
+    P15 & Cycle called with G77, G79 but no M3, M4, M13, or M14 programmed, \\
+        & or T1..* before M3 programmed (Battelle) \\
+    P16 & Called points are not defined \\
+    P17 & Programmed axis does not exist \\
+    P18 & Read error in active program (NC system error) \\
+    P19 & Calling G43, G44 caused actual and programmed positions to be identical \\
+    P20 & Tool radius is greater than programmed radius (G41, G42, G87, G88, G89) \\
+    P21 & E-parameter divided by 0 \\
+    P22 & G14: Start and end of jump swapped \\
+    P23 & G87, G88, G89: Tool radius programmed incorrectly \\
+    P24 & I-value (overlap) in G87, G89 is less than 1\% or greater than 100\% \\
+    P25 & No S programmed for M3, M4, M13, M14 \\
+    P26 & Machine constant values are outside the allowable range \\
+    P27 & Programmed T-numbers do not exist in NC, or T-numbers were called \\
+        & with incorrect M (e.g., M6, M46, T50 for a magazine with 24 tools) \\
+    P28 & Called E-parameters are not defined \\
+    P29 & E-parameter computation range too large \\
+    P30 & NC set to metric, but an inch program was loaded (G70, G71) \\
+    P31 & NC set to inch, but a metric program was loaded (G70, G71) \\
+    P32 & Programmed spindle speed outside allowed range \\
+    P33 & Repetition J set to 0 (for G14, G29, G77) \\
+    P34 & 4th axis is a linear axis \\
+    P35 & Programming error in next block for G41, G42, G11 \\
+    P36 & Programmed endpoint not on the circle \\
+    P37 & Probe collision during approach within probing cycle \\
+    P38 & Probe did not find surface \\
+    P39 & Measured differences exceed the specified tolerance in G49 \\
+    P40 & No correct difference values or tolerance in G50 \\
+    P41 & Probe cycle programmed, but probe not activated via machine constant \\
+    P42 & G23: No program number specified \\
+    P43 & G23: Programmed state not found \\
+    P44 & G23: Programmed program not found \\
+    \end{tabular}
+\end{table}
+
+\newpage
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    P45 & G23: Editing must be completed before return jump \\
+    P47 & M3, M4 programmed while probe is active \\
+    P48 & Function not allowed during active rotation \\
+    P49 & Warning: Tool radius greater than programmed radius (G41, G42, G87, G88, G89) \\
+    P50 & M66 programmed in remote mode \\
+    P51 & Straight line with point not allowed \\
+    P52 & Straight line with angle not allowed \\
+    P53 & Straight line with angle and point not allowed \\
+    P54 & Straight line with contact point not allowed \\
+    P55 & Straight line with intersection point not allowed \\
+    P56 & Straight line with chamfer not allowed \\
+    P57 & Circle with endpoint not allowed \\
+    P58 & Circle with midpoint not allowed \\
+    P59 & Circle with contact point not allowed \\
+    P60 & Circle with intersection point not allowed \\
+    P61 & No intersection point between two straight lines \\
+    P62 & No intersection point between a straight line and a circle \\
+    P63 & Intersection point between straight line and circle: J1* missing \\
+    P64 & No contact point between circle, straight line, and circle \\
+    P65 & No rounding possible for straight line-circle transition \\
+    P66 & Rounding possible for circle-circle transition \\
+    P67 & R-Rounding too large between two intersecting circles \\
+    P68 & Contact point not possible between straight line and intersecting circle \\
+    P69 & R-Rounding too large between straight line and intersecting circle \\
+    P70 & Rounding not allowed \\
+    P71 & Endpoint not defined \\
+    P72 & Block not allowed \\
+    P73 & Start point of straight line is the circle center \\
+    P74 & K1*, J1*, or R1* missing \\
+    P75 & Midpoint missing \\
+    P76 & Coordinate missing \\
+    P77 & G-function not allowed \\
+    P79 & Empty space next to oversized tool is occupied \\
+    P80 & Error in first geometry block \\
+    P81 & Error after straight line \\
+    P82 & Error after straight line-circle transition \\
+    P83 & Error after straight line-contact line transition \\
+    P84 & Error after straight line-contact line-circle transition \\
+    P85 & Error after straight line-circle transition \\
+    P86 & Error after straight line-circle-contact line transition \\
+    P87 & Error after straight line-circle-contact line-circle transition \\
+    P88 & Error after straight line-contact line transition \\
+    P89 & Error after straight line-contact line-circle transition \\
+    P90 & Error after intersection line \\
+    P91 & Error after intersection line-circle transition \\
+    P92 & Error after contact line \\
+    P93 & Error after contact line-circle transition \\
+    P94 & Error after intersection circle \\
+    P95 & Error after intersection circle-contact line transition \\
+    P96 & Error after intersection circle-contact line-circle transition \\
+    P97 & Error after intersection circle-circle transition \\
+    P98 & Error after intersection circle-circle-contact line transition \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    P99  & Error after intersection circle-rounding-contact line-rounding \\
+    P100 & Error after contact circle \\
+    P101 & Error after contact circle-contact line \\
+    P102 & Error after contact circle-contact line-rounding \\
+    P103 & Error after contact circle-rounding \\
+    P104 & Error after contact circle-rounding-contact line \\
+    P105 & \textbf{Error after contact circle-rounding-contact line-rounding} \\
+    P106 & Error after circle \\
+    P107 & Error after circle-rounding \\
+    P108 & Error after circle-rounding-contact line \\
+    P109 & Error after circle-rounding-contact line-rounding \\
+    P110 & Sister tool in part program \\
+    P111 & Program locked (LOCK) \\
+    P112 & Temperature memory not locked \\
+    P113 & Incorrect plane for tool change M06 \\
+    P114 & Tool in spindle not from magazine \\
+    P115 & Tool change programmed while quill is extended \\
+    P116 & Spindle not empty (T0 M06 or T0 M66 required) \\
+    P117 & Tool not in magazine at M06 \\
+    P118 & Tool locked at M06 \\
+    P119 & Tool in spindle is from the magazine \\
+    P130 & Programmed values not allowed \\
+    P133 & Cylinder radius is incorrect or missing \\
+    P140 & G207 nested \\
+    P141 & Too many elements programmed \\
+    P142 & Too many contours programmed \\
+    P143 & Incorrect G-address in contour pocket \\
+    P144 & Invalid contour description \\
+    P145 & Start point on contour input incorrect \\
+    P146 & G207: Return jump not possible \\
+    P147 & Memory manager error \\
+    P150 & Tool not found \\
+    \end{tabular}
+\end{table}
+
+\section*{Operation}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    O01 & Changing a program or macro during execution, or program locked \\
+    O02 & No block number entered \\
+    O03 & Requested block number not found, or T- / P-search in TM memory failed \\
+    O04 & Read error in active program (NC system error) \\
+    O05 & More than 80 characters programmed in one block \\
+    O06 & Block number already in use \\
+    O07 & Warning: Program memory almost full \\
+    O08 & Program memory full \\
+    O09 & Invalid N-, T-, E-, or P-number programmed (exceeds allowed range) \\
+    O10 & Program number already in use \\
+    O11 & Program number not found \\
+    O12 & No program number entered \\
+    O14 & Read error in next block with G41, G42 (NC system error) \\
+    O15 & During playback, four axes stored in one block \\
+    O17 & During block search in Teach/Playback, M30 was found \\
+    O18 & Memory size too small \\
+    \end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    O19  & After = sign: Incorrect address or data \\
+    O20  & Invalid G-function programmed in Playback mode \\
+    O21  & Switching to Teach-In when a block with G11 is active, \\
+         & or multiple points processed in a single block \\
+    O22  & Duplicate position numbers in tool memory \\
+    O23  & Machine constants outside the allowed range \\
+    O24  & M3, M4 programmed while probe is active, \\
+         & or probe collision outside of measurement cycle \\
+    O25  & Number of call numbers greater than entered in MC43 \\
+    O26  & Duplicate call number already stored in PE memory \\
+    O27  & Tool already assigned as a sister tool \\
+    O28  & Call number not in PE memory \\
+    O29  & No call number assigned when recognizing program call \\
+    O30  & Workpiece surface does not match this orientation \\
+    O31  & No orientation for 4th axis \\
+    O32  & G20 with rotated 4th axis \\
+    O37  & Invalid character after address \\
+    O38  & Addresses without data \\
+    O39  & Data sequence invalid \\
+    O40  & Invalid address \\
+    O45  & Negative sign not allowed \\
+    O50  & Program locked via Softkey LOCK \\
+    O54  & Active data cannot be modified \\
+    O55  & Number of programs greater than MC85 limit \\
+    O56  & Temperature memory overflow \\
+    O57  & No temperature set \\
+    O60  & T-number exists multiple times \\
+    O61  & T-number < 3 decades \\
+    O62  & Oversized tool directly next to normal or oversized tool \\
+    O63  & Empty space next to oversized tool cannot be occupied \\
+    O66  & Block with program number cannot be copied \\
+    O67  & Block with program number cannot be deleted \\
+    O71  & Programming error in graphics window \\
+    O72  & Programming error in partial contour \\
+    O73  & Communication error in graphics \\
+    O120 & Missing mathematical sign \\
+    O121 & Missing operand \\
+    O122 & Missing left bracket \\
+    O123 & Missing right bracket \\
+    O124 & Syntax error in mathematical expression \\
+    O125 & E-parameter in calculator mode \\
+    O126 & Too many brackets in expression \\
+    O127 & E-parameter division by zero \\
+    O128 & Conversion degrees-radians not allowed \\
+    O129 & Intermediate values out of range \\
+    O130 & Exponent syntax error \\
+    O131 & E-parameter not in parameter memory \\
+    O132 & Computed values too large \\
+    O133 & Computed values too small \\
+    O134 & Computation error: Maximum exceeded \\
+    O135 & Computation error: Minimum not reached \\
+    O136 & Syntax error \\
+    O137 & Modification not allowed \\
+    O138 & G-function not allowed \\
+    O139 & Too many characters in word \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    O140 & Decimal point not allowed \\
+    O141 & Address not allowed \\
+    O142 & Comment brackets not closed \\
+    O143 & Duplicate addresses in block \\
+    O154 & Memory locked \\
+    O155 & Mini-PC: Disk error \\
+    O156 & Mini-PC: Disk is write-protected \\
+    O157 & \textbf{Mini-PC: Directory read during Data I/O not possible} \\
+    O170 & Calculation error in contour pocket \\
+    O171 & Probe status incorrect \\
+    \end{tabular}
+\end{table}
+
+\section*{Data Input/Output}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    D01 & Read tool corrections or machine constants while processing a program \\
+    D02 & No block number entered \\
+    D03 & Program number to be read not found \\
+    D04 & Read error (NC system error) \\
+    D05 & Block contains too many characters (max. 128) \\
+    D06 & Block number already assigned \\
+    D07 & Warning: Program memory almost full \\
+    D08 & Program memory full \\
+    D09 & Invalid N-, T-, E-, or P-number programmed (exceeds valid range) \\
+    D10 & Program number already assigned \\
+    D11 & Program number not found (during readout) \\
+    D12 & No program number entered (N9000 - N9999999) \\
+    D13 & Invalid RAM memory size entered \\
+    D14 & Read error at G41, G42 in next block (NC system error) \\
+    D18 & Memory size too small \\
+    D19 & After "=" sign: Invalid address or data (e.g., E1=N) \\
+    D20 & Invalid G-function \\
+    D25 & Number of call numbers greater than entered in MC43 \\
+    D26 & Duplicate call number already in PE memory \\
+    D27 & Tool is already a sister tool \\
+    D28 & Call number not in PE memory \\
+    D29 & No call number assigned \\
+    D30 & Address already exists \\
+    D31 & Invalid character \\
+    D32 & Received data with incorrect parity \\
+    D33 & Word length error \\
+    D34 & Input or readout aborted \\
+    D35 & Program number less than N9000 entered \\
+    D36 & Memory selection missing during read-in (e.g., \%PM) or incorrect \\
+    D37 & After a word, an invalid character was programmed (e.g., N9001 \%PM) \\
+    D38 & Address without data \\
+    D39 & Block number greater than 9000 \\
+    D40 & Order of programmed characters invalid (e.g., X123=Y345) \\
+    D41 & Input readout device not ready \\
+    D42 & Baud rate error or buffer overflow in CNC internal input buffer \\
+    D43 & Invalid memory selected (e.g., \%QM) \\
+    D44 & Entered address not used on machine (e.g., N100 Q20) \\
+    D45 & Minus sign programmed in address where no minus sign is allowed \\
+    D46 & Address contains multiple "=" signs (e.g., E1=E2=E3=) \\
+    D47 & Program number to be read not found \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    D48 & NC set to metric, but an inch program was loaded (G70, G71) \\
+        & Warning: Program will be converted \\
+    D49 & Memory lock during DATA I/O \\
+    D50 & Memory area in use during DATA I/O \\
+    D51 & Number of programs exceeds MC85 limit \\
+    D52 & Temperature memory full \\
+    D53 & No temperature value entered \\
+    D60 & Tool number already exists \\
+    D61 & T-number < 3 decades \\
+    D62 & No free space in tool magazine, or oversized tool adjacent to another tool \\
+    D63 & Empty space next to an oversized tool must not be used \\
+    D80 & DNC not synchronized \\
+    D81 & DNC: Connection broken (DTR signal inactive) \\
+    D82 & DNC: Incorrect data format, or data corrupted \\
+    D83 & DNC: Incorrect baud rate \\
+    D84 & DNC: Incorrect parity \\
+    D85 & DNC: Wait time exceeded \\
+    D86 & DNC: Incorrect block transfer time \\
+    D87 & DNC: Computer aborted transfer \\
+    D90 & Code is not T, X, or Z \\
+    D100 & DNC computer cannot save transferred program \\
+    D110 & Requested program not in DNC computer memory \\
+    D120 & DNC computer cannot send requested program \\
+    D130 & Program number currently being processed by DNC computer \\
+    D121 & Missing operand in calculation \\
+    D122 & Missing left parenthesis \\
+    D123 & Missing right parenthesis \\
+    D124 & Syntax error in calculation expression \\
+    D125 & E-parameter in calculator mode \\
+    D126 & Too many parentheses in expression \\
+    D127 & E-parameter divided by 0 \\
+    D128 & Conversion between degrees and radians not allowed \\
+    D129 & Values out of range \\
+    D130 & Exponent syntax error \\
+    D131 & E-parameter not allowed in parameter memory \\
+    D132 & Computed value too large \\
+    D133 & Computed value too small \\
+    D134 & Calculation error: Maximum value exceeded \\
+    D135 & Calculation error: Minimum value exceeded \\
+    D136 & Syntax error \\
+    D137 & Modification not allowed \\
+    D138 & G-function not allowed \\
+    D139 & Too many characters in a word \\
+    D140 & Decimal point not allowed \\
+    D141 & Address not allowed \\
+    D142 & Comment brackets not closed \\
+    D143 & Duplicate addresses in block \\
+    D150 & MC770 - MC776 incorrect, DATA I/O error \\
+    D151 & Program number does not match program number after \%PM (MC799 = 1) \\
+    D152 & Program or macro was edited \\
+    D153 & Selected program or macro not found \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    D154 & Memory locked \\
+    D155 & Mini-PC: Disk error \\ 
+    D156 & Mini-PC: Disk is write-protected \\
+    D157 & Mini-PC: Disk is full \\ 
+    D158 & Mini-PC: No disk in drive \\
+    D159 & Mini-PC: File locked on disk \\
+    \end{tabular}
+\end{table}
+
+\section*{Interface Errors}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I01 & Interface not powered \\ 
+    I05 & Interface not powered (Emergency stop from the machine) \\ 
+    \end{tabular}
+\end{table}
+
+\section*{Tool Monitoring}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I10 & Tool breakage detected \\ 
+    I11 & Warning: Tool life exceeded \\ 
+    I12 & Tool life exceeded \\ 
+    I13 & Warning: 1st threshold exceeded (Cutting performance monitoring) \\ 
+    I14 & Tool change of a tool whose 1st threshold was exceeded (Cutting performance monitoring) \\ 
+    I15 & 2nd threshold exceeded (Cutting performance monitoring) \\ 
+    I16 & Takeover signal for tool measurement missing (Tool breakage monitoring) \\ 
+    I17 & The tool measurement value is zero (Tool breakage monitoring) \\ 
+    I18 & Maximum measurement value exceeded (Tool breakage monitoring) \\ 
+    I19 & 2nd measurement value greater than 1st measurement value (Tool breakage monitoring) \\ 
+    \end{tabular}
+\end{table}
+
+\section*{External Program Call}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I20 & A call number has already been assigned to this release signal, or the second call \\
+        & number was offered first and then the first call number \\ 
+    I21 & Start of an external program without a call number \\ 
+    I22 & Externally called program is currently being modified \\ 
+    I23 & The call number is not assigned to a program number \\ 
+    I24 & The call number is assigned to a program number that is not in program memory \\ 
+    \end{tabular}
+\end{table}
+
+\section*{NC-Start Conditions}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I27 & Limit switch tool gripper open/closed both 0-signal \\ 
+    I28 & Number of pallets does not match the value in MC41 \\ 
+    I29 & Feedback for pallet change execution missing \\ 
+    I30 & Limit switch oriented spindle stop on/off both I-signal \\ 
+    I31 & Limit switch tool gripper open/closed both I-signal \\ 
+    I32 & Limit switch tool changer front/rear both I-signal \\ 
+    I33 & Limit switch tool changer left/right both I-signal \\ 
+    I34 & Tool clamp released \\ 
+    I35 & Input (inverted) spindle and feed hold 0-signal \\ 
+    I36 & Cabin window not closed outside M60 \\ 
+    I37 & Limit switch cabin window open/closed both I-signal \\ 
+    I38 & Program start and no pallet on the table \\ 
+    I39 & Limit switch pallet clamping clamped/released both I-signal \\ 
+    I40 & Limit switch pallet changer inside/outside both I-signal \\ 
+    I41 & Pallet changer not outside outside M60 \\ 
+    I42 & NC start although swivel milling cycle is not completed \\ 
+    I43 & Limit switch swivel milling head gear setting horizontal/vertical both I-signal \\ 
+    I44 & Limit switch swivel milling head indexing open/close both I-signal \\
+    I45 & No read enable from IPC or internal from NC \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\section*{Tool Magazine / Tool Changer}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I46 & Limit switch change arm right 0-signal \\
+    I47 & Limit switch change arm left 0-signal \\
+    I48 & Limit switch change arm front 0-signal \\
+    I49 & Limit switch tool gripper open 0-signal \\
+    I50 & Counting pulse error of tool magazine \\
+    I51 & Tool magazine not in position or magazine not synchronized, or both counting \\
+        & pulses not I-signal \\
+    I52 & Change arm not in left or right position \\
+    I53 & Tool gripper closed during T-search run \\
+    I54 & Tool gripper closed 1-signal outside M06 or tool gripper closed 0-signal at M06 \\
+    I55 & Tool changer not at the rear outside M06 \\
+    I56 & Tool change arm not at the rear (or not at the front) at M06 \\
+    I57 & Synchronization error of the tool magazine \\
+    I58 & Invalid tool location in memory \\
+    I59 & Limit switch tool clamp engaged 0-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Spindle Monitoring}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I60 & Invalid spindle speed programmed (for 18-step gearbox) \\
+    I61 & Incorrect speed series selected in machine constant (for 18-step gearbox) \\
+    I62 & Gear stage not in defined position \\
+    I63 & Limit switch oriented spindle stop on 0-signal \\
+    I64 & Limit switch oriented spindle stop off 0-signal \\
+    I65 & Spindle halt during feed \\
+    I66 & Infrared measuring probe: measuring path interrupted or battery replacement required \\
+    I67 & MC 560 = 0 or 3 during automatic tool change \\
+    I68 & Feedback n-actual = n-set missing \\
+    \end{tabular}
+\end{table}
+
+\section*{Pallet Changer}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I69 & Pallet change with M61/M62 and limit switch pallet in left/right position I-signal, \\
+        & or pallet change with M60 and limit switch pallet in left/right position I-signal \\
+        & while pallet loaded \\
+    I70 & Pallet changer not released \\
+    I71 & Limit switch pallet in left or right position both 0-signal \\
+    I72 & Pallet changer: window open 0-signal \\
+    I73 & Pallet changer: window closed 0-signal \\
+    I74 & Pallet changer: not inside \\
+    I75 & Pallet changer: not outside \\
+    I76 & Pallet clamping not released \\
+    I77 & Pallet clamping not engaged \\
+    I78 & Error limit switch pallet left position \\
+    I79 & Error limit switch pallet right position \\
+    \end{tabular}
+\end{table}
+
+\section*{Swivel Milling Head}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I80 & Milling head gearbox position not vertical or horizontal \\
+    I81 & Milling head not in horizontal position \\
+    I82 & Milling head not in vertical position \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I83 & Milling head indexing not open \\
+    I84 & Milling head indexing not closed \\
+    I85 & Milling head clamping not released \\
+    I86 & Milling head clamping not engaged \\
+    I87 & No feedback that spindle has stopped \\
+    I88 & Quill not in end position \\
+    I89 & X- or Z-axis not in change position \\
+    I90 & Counter-holder or multi-spindle head mounted \\
+    I91 & Tool clamp not released \\
+    I92 & Intermediate gear speed selection at middle position \\
+    I93 & Swivel milling head cycle not completed \\
+    I94 & Milling head gearbox position not horizontal \\
+    I95 & Milling head gearbox position not vertical \\
+    I96 & Limit switch milling head vertical/horizontal at 0-signal \\
+    I97 & No release to swivel milling head \\
+    I98 & Milling head clamping released/engaged both 1-signal \\
+    I99 & Swivel gearbox and milling spindle engagement not in correct position \\
+    \end{tabular}
+\end{table}
+
+\section*{Central Lubrication}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I100 & Feedback central lubrication pressure switch not 0-signal \\
+    I101 & Feedback central lubrication pressure switch for axis 1 not 1-signal \\
+    I102 & Feedback central lubrication pressure switch for axis 2 not 1-signal \\
+    I103 & Feedback central lubrication pressure switch for axis 3 not 1-signal \\
+    I104 & Feedback central lubrication pressure switch for axis 4 not 1-signal \\
+    I105 & Feedback central lubrication pressure switch for axis 5 not 1-signal \\
+    I106 & Feedback central lubrication pressure switch for axis 6 not 1-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Tool Changer (Kelch)}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I107 & Tool magazine not released \\
+    I108 & Tool change not released \\
+    I109 & M-function not released \\
+    I110 & Tool clamp release not released \\
+    I111 & Tool clamp engage not released \\
+    I112 & No feedback M06 \\
+    \end{tabular}
+\end{table}
+
+\section*{DIN Pallet Changer}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I113 & Latch not open left pallet \\
+    I114 & Latch not closed left pallet \\
+    I115 & Latch not open right pallet \\
+    I116 & Latch not closed right pallet \\
+    I117 & Central lubrication error \\
+    I118 & Pallet change not completed \\
+    \end{tabular}
+\end{table}
+
+\section*{Temperature Compensation}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I120 & Incorrect synchronization (Temperature compensation) \\
+    I121 & Incorrect parity (Temperature compensation) \\
+    I122 & Short circuit detected from sensor (Temperature compensation) \\
+    I123 & Temperature sensor A too high or too low \\
+    I124 & Temperature sensor B too high or too low \\
+    I125 & Temperature sensor C too high or too low \\
+    I126 & Wire break detected from sensor (Temperature compensation) \\
+    I127 & Incorrect BCD value (Temperature compensation) \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\section*{Tool Errors}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I130 & Programmed T-number not in magazine at M06 \\
+    I131 & Programmed T-number not in magazine at T-programming \\
+    I132 & Tool locked due to service life, cutting force, or breakage at M06 \\
+    I133 & Warning: Tool locked due to service life, cutting force, or breakage \\
+         & during machining \\
+    I134 & Tool from magazine in spindle at M66 \\
+    I135 & Tool in spindle not from magazine at M06 \\
+    \end{tabular}
+\end{table}
+
+\section*{Two-Stage Gearbox}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I136 & Gearbox switching limit switch 1 at 0-signal \\
+    I137 & Gearbox switching limit switch 2 at 0-signal \\
+    I138 & Gearbox switching limit switch 1 at 1-signal \\
+    I139 & Gearbox switching limit switch 2 at 1-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Quill (Pinole)}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I140 & Quill retracted 0-signal \\
+    I141 & Quill extended 0-signal \\
+    I142 & Quill clamping released 0-signal \\
+    I143 & Quill clamping released 1-signal \\
+    I144 & Quill indexing open 0-signal \\
+    I145 & Quill indexing open 1-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Pickup Changer}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I146 & 1st arm down 1-signal \\
+    I147 & 1st arm down 0-signal or \\
+         & (for universal tool changer) magazine flap closed 0-signal \\
+    I148 & 1st arm up 1-signal \\
+    I149 & 1st arm up 0-signal or \\
+         & (for universal tool changer) magazine flap open 0-signal \\
+    I150 & 3rd arm down 0-signal \\
+    I151 & 3rd arm up 1-signal \\
+    I152 & 3rd arm up 0-signal \\
+    I153 & Tool row left and right both 1-signal \\
+    I154 & Tool row left 0-signal \\
+    I155 & Tool row right 0-signal \\
+    I156 & Tool clamp released horizontal 0-signal \\
+    I157 & Tool clamp released horizontal 1-signal or \\
+         & (for universal tool changer) tool clamp engaged horizontal 0-signal \\
+    I158 & Tool clamp released vertical 0-signal \\
+    I159 & Tool clamp released vertical 1-signal or \\
+         & (for universal tool changer) tool clamp engaged vertical 0-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Door Contact}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I160 & Door contact closed 0-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Cable Probe}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I166 & Probe not switched off \\
+    I167 & Probe not in spindle 0-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Clamping 4th/5th/6th Axis}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I170 & Clamping release error 4th axis \\
+    I171 & Clamping release error 5th axis \\
+    I172 & Clamping engagement error 4th axis \\
+    I173 & Clamping engagement error 5th axis \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I174 & Clamping release error 6th axis \\
+    I175 & Clamping engagement error 6th axis \\
+    \end{tabular}
+\end{table}
+
+\section*{NC-Start Conditions}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I176 & Spindle not empty \\
+    I177 & Milling head swivel via buttons not completed \\
+    I178 & Milling head swivel via M53, M54 not completed \\
+    I179 & M51, M52 not completed \\
+    I180 & Quill indexing open/close both 1-signal \\
+    I181 & Quill indexing closed 0-signal \\
+    I182 & Quill retracted/extended both 1-signal \\
+    I183 & Pickup tool changer: Arm up/down both 1-signal \\
+    & Universal tool changer: Magazine flap open/closed both 1-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Vertical Milling Head (C-Axis)}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I184 & Lock engaged (pressure switch) not 1-signal \\
+    I185 & Lock engaged (pressure switch) not 0-signal \\
+    I186 & Lock disengaged (limit switch) not 1-signal \\
+    I187 & Lock disengaged (limit switch) not 0-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Battery}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I190 & Input ready for operation 0-signal \\
+    I191 & No feedback measurement reset \\
+    I192 & No feedback cut request \\
+    \end{tabular}
+\end{table}
+
+\section*{Swivel Milling Head}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I300 & Milling spindle vertical on 0-signal \\
+    I301 & Milling spindle vertical off 0-signal \\
+    I302 & Milling spindle vertical on/off both 1-signal \\
+    I303 & Swivel gearbox off 0-signal \\
+    I304 & Swivel gearbox on 0-signal \\
+    I305 & Swivel gearbox on/off both 1-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Tool Changer}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I306 & Automatic tool change not allowed \\
+    I307 & Double gripper 0-degree position / 78.5-degree position both 1-signal \\
+    I308 & Tool carrier extended 1-signal \\
+    I309 & Tool carrier extended 0-signal \\
+    I310 & Tool carrier retracted 0-signal \\
+    I311 & Tool changer extended 0-signal \\
+    I312 & Tool changer vertical 0-signal \\
+    I313 & Tool changer 90-degree position 0-signal \\
+    I314 & Tool changer horizontal 0-signal \\
+    I315 & Tool changer vertical 1-signal \\
+    I316 & Tool changer retracted 0-signal \\
+    I317 & Gripper closed not 1-signal \\
+    I318 & Tool clamp released 1-signal \\
+    I319 & Tool changer 90-degree 1-signal and tool carrier on 0-signal \\
+    I320 & Milling spindle horizontal/vertical both 1-signal \\
+    I321 & Outside M06: Tool changer retracted 1-signal \\
+    & Tool carrier retracted 0-signal and gripper open 0-signal \\
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I322 & Outside M06: Tool carrier retracted 0-signal \\
+    I323 & Tool changer retracted 1-signal \\
+    I324 & Tool changer 90-degree position 1-signal \\
+    I325 & Magazine flap (tool changer flap) closed 0-signal \\
+    I326 & Magazine flap (tool changer flap) open 0-signal \\
+    I327 & Magazine flap (tool changer flap) open/closed both 1-signal \\
+    I328 & Double gripper 0-degree position 0-signal \\
+    I329 & Double gripper 78.5-degree position 0-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Rotary Pallet Changer - MH 1000 S}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    I330 & Setup door not closed \\
+    I331 & Linear drive not in middle position \\
+    I332 & Limit switch pallet 1-signal \\
+    I333 & Pallet position 1/2 both 1-signal \\
+    I334 & Pallet position 1/2 both 0-signal \\
+    I335 & Pallet clamping released/engaged both 0-signal \\
+    I336 & Cabin window not open \\
+    I337 & Error limit position monitoring rotary drive \\
+    I338 & Limit switch worm drive 0-signal \\
+    I339 & Limit switch linear drive 1 1-signal \\
+    I340 & Limit switch linear drive 2 1-signal \\
+    I341 & Limit switch linear drive 1 0-signal \\
+    I342 & Limit switch linear drive 2 0-signal \\
+    I343 & Limit switch pallet 1 0-signal \\
+    I344 & Limit switch pallet 2 0-signal \\
+    I345 & Limit switch pallet 2 1-signal \\
+    I346 & Setup door not closed during manual rotation \\
+    I347 & Linear drive not in middle position during manual rotation \\
+    I348 & Pallet position 1/2 both 1-signal during manual rotation \\
+    I349 & Pallet position 1/2 both 0-signal during manual rotation \\
+    I350 & Limit position monitoring rotary drive 0-signal during manual rotation \\
+    I351 & Limit switch worm drive 0-signal during manual rotation \\
+    I352 & Pallet change released during manual rotation \\
+    I353 & Pallet location control 1 (free location) 0-signal \\
+    I354 & Pallet location control 1 (free location) 1-signal \\
+    I355 & Pallet location control 2 (handover location) 0-signal \\
+    I356 & Pallet location control 2 (handover location) 1-signal \\
+    I357 & Setup location in change position 0-signal \\
+    \end{tabular}
+\end{table}
+
+\section*{Graphics Errors}
+
+\begin{table}[!h]
+    \begin{tabular}{ll}
+    G1 & Programming error window \\
+    G2 & Programming error raw contour \\
+    G20 & Communication error \\
+    \end{tabular}
+\end{table}
+
 
 \end{document}
