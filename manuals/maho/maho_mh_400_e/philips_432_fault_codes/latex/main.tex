@@ -25,8 +25,11 @@
         OVERVIEW OF ERROR CODES - CNC 432
     }
 }
+
+\newcounter{basepagenum}  % Define a new counter
+\setcounter{basepagenum}{26778}  % Set base page number
 \fancyhead[R]{%
-    \textbf{E4.26778}\\[3mm]
+    \textbf{E4.\the\numexpr\value{basepagenum}+\thepage-1\relax}\\[3mm] % Dynamic page number
     Date Created: 09/06/87\\
     Last Revision Date: 30/01/90\\
     Drawn By: HRU/LOH
